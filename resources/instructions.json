@@ -1,0 +1,51 @@
+{
+	"settings": {
+		"mode":"kubectl",
+		"varpath":"/Users/andrewcampagna/Desktop/Projects/dolphin/data/"
+	},
+
+	"meta": {
+		"name":"Beta development instruction template",
+		"version":"1.0",
+		"author":"Andrew Campagna"
+	},
+
+	"blocks": [
+
+		{
+			"type":"create",
+			"from": {
+				"type":"file",
+				"path":"mongo.yaml"
+			},
+
+			"vars": {
+				"mongodb-ip": {
+					"type":"ClusterIP",
+					"service":"mongodb-svc",
+					"namespace":"dolphin"
+				}
+			}
+		},
+
+		{
+			"type":"create",
+			"from": {
+				"type":"file",
+				"path":"redis.yaml"
+			},
+
+			"wait_for": [
+
+				{
+					"type":"PodStatus",
+					"value":"Running",
+					"selector":"mongodb",
+					"namespace":"dolphin",
+					"buffer":5
+				}
+
+			]
+		},
+	]
+}
