@@ -1,7 +1,7 @@
 {
 	"settings": {
 		"mode":"kubectl",
-		"varpath":"/Users/andrewcampagna/Desktop/Projects/dolphin/data/"
+		"varpath":"<PATH_TO_DATA_DIR>"
 	},
 
 	"meta": {
@@ -11,41 +11,10 @@
 	},
 
 	"blocks": [
-
+		
 		{
-			"type":"create",
-			"from": {
-				"type":"file",
-				"path":"mongo.yaml"
-			},
-
-			"vars": {
-				"mongodb-ip": {
-					"type":"ClusterIP",
-					"service":"mongodb-svc",
-					"namespace":"dolphin"
-				}
-			}
-		},
-
-		{
-			"type":"create",
-			"from": {
-				"type":"file",
-				"path":"redis.yaml"
-			},
-
-			"wait_for": [
-
-				{
-					"type":"PodStatus",
-					"value":"Running",
-					"selector":"mongodb",
-					"namespace":"dolphin",
-					"buffer":5
-				}
-
-			]
-		},
+			"type":"shell",
+			"cmd":"echo \"Dolphin version %version%\nCreated by %author%\""
+		}
 	]
 }
