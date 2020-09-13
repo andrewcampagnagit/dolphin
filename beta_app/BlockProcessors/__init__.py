@@ -7,3 +7,5 @@ Inventory:
 - kubectlblock
 For processing Kubernetes cloud deployments using kubectl. Use the command
 ``dolphin explain blockprocessor.kubectlblock`` for usage info.
+
+"""
