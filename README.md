@@ -16,8 +16,6 @@ all operations from that point in the deployment until a specific condition is
 met, like a pod in Running status. These features come with our of the box
 BlockProcessors, but you can write your own processor easily.
 
-#### Documentation
-
 **Comprehensive guide** <URL_TO_GUIDE>
 
 **Project contribution rules** <URL_TO_HOW_TO_CONTRIBUTE>
