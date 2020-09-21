@@ -1,7 +1,7 @@
 # dolphin
-Cloud platform template deployments
 
 [![Generic badge](https://img.shields.io/badge/python-3.7-blue)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/dolphin-beta--2-orange)](https://shields.io)
 
 ## Appendix
 
