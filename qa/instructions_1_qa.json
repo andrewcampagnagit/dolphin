@@ -1,0 +1,21 @@
+{
+	"settings": {
+		"mode":"kubectl",
+		"varpath":"./data/"
+	},
+
+	"meta": {
+		"name":"Beta development instruction template",
+		"version":"1.0",
+		"author":"Andrew Campagna"
+	},
+
+	"blocks": [
+		
+		{
+			"type":"shell",
+			"cmd":"echo \"Dolphin version %version%\nCreated by %author%\""
+		}
+		
+	]
+}
