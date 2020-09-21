@@ -4,7 +4,7 @@ Cloud platform template deployments
 #### Appendix
 
 1. Overview of software
-  - Summary
+  1. Summary
 2. Guide
   1. Getting started
   2. Instruction blocks
