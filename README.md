@@ -4,24 +4,19 @@
 [![Generic badge](https://img.shields.io/badge/dolphin-beta--2-orange)](https://shields.io)
 [![Generic badge](https://img.shields.io/badge/kubernetes-1.18.0-blue)](https://shields.io)
 
-## Appendix
+#### Summary
 
-#### Overview of software
-  1. Summary
-  
-#### Guide
-  1. Getting started
-  2. Instruction blocks
-  3. Creating and Deleting resources
-  4. Variables
-  5. Wait for
-  6. BlockProcessors
-  7. Creating a multistage deployment
-  
-#### Developing a BlockProcessor
-  1. How to develop a custom BlockProcessor in Python 3
-  
-#### Contributing to the project
-  1. Code style
-  2. Branches
-  
+Dolphin aims to ease the multistage cloud application deployment process
+by creating instruction blocks for each part of the process. What makes this
+process different is the robust set of functionality that dolphin features
+in its templates. You can specify instruction blocks to store
+variables from deployed resources along the way dynamically. Another great 
+feature is the ability to impose a wait instruction on a resource; this halts 
+all operations from that point in the deployment until a specific condition is
+met, like a pod in Running status. These features come with our of the box
+BlockProcessors, but you can write your own processor easily.
+
+#### Documentation
+
+**Comprehensive guide** <URL_TO_GUIDE>
+**Project contribution rules** <URL_TO_HOW_TO_CONTRIBUTE>
