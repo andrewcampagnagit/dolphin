@@ -4,18 +4,18 @@ Cloud platform template deployments
 #### Appendix
 
 1. Overview of software
-  a. Summary
+  1. Summary
 2. Guide
-  a. Getting started
-  b. Instruction blocks
-  c. Creating and Deleting resources
-  d. Variables
-  e. Wait for
-  f. BlockProcessors
-  g. Creating a multistage deployment
+  1. Getting started
+  2. Instruction blocks
+  3. Creating and Deleting resources
+  4. Variables
+  5. Wait for
+  6. BlockProcessors
+  7. Creating a multistage deployment
 3. Developing a BlockProcessor
-  a. How to develop a custom BlockProcessor in Python 3
+  1. How to develop a custom BlockProcessor in Python 3
 4. Contributing to the project
-  a. Code style
-  b. Branches
+  1. Code style
+  2. Branches
   
