@@ -1,2 +1,5 @@
 # dolphin
-Kubernetes &amp; OpenShift sequential deployment manager
+Cloud platform template deployments
+
+#### Summary
+
