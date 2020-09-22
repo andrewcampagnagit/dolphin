@@ -95,5 +95,10 @@ class InstructionParser():
         """
 
         if main_cmd:
-            print(os.popen(main_cmd).read(), end="")
+            stdout = os.popen(main_cmd).read()
+            print(stdout, end="")
+
+            with open(".dolphin_last_out.log", "w+") as dolphin_log_file:
+                dolphin_log_file.write(stdout)
+
         return
