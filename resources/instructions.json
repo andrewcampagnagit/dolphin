@@ -1,7 +1,7 @@
 {
 	"settings": {
 		"mode":"kubectl",
-		"varpath":"<PATH_TO_DATA_DIR>"
+		"varpath":"data/"
 	},
 
 	"meta": {
