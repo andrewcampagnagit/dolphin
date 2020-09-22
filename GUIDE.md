@@ -1,6 +1,6 @@
 # How to use dolphin (beta-2)
 
-### Getting started
+## Getting started
 
 To get started we will use the pre-built example deployment that
 comes with the dolphin package. We will use the **deploy** option
@@ -15,7 +15,7 @@ Dolphin version beta-2
 Created by Server Center - Cloud Development Software
 ```
 
-### Blocks and stages
+## Blocks and stages
 
 Each deployment has an instruction file which you specify in the command
 line. This file can be local or hosted and contains three types of **blocks**.
