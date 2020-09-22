@@ -21,6 +21,7 @@ Each deployment has an instruction file which you specify in the command
 line. This file can be local or hosted and contains three types of **blocks**.
 
 **Settings block**
+
 Every instruction file should have a settings block. This specifies mode
 and location of variables.
 
@@ -34,6 +35,7 @@ and location of variables.
 ```
 
 **Instruction blocks** 
+
 Multiple instruction blocks make up a deployment and when processed are refered
 to as **stages** which are the raw shell commands that actually do the resource
 creation.
@@ -52,6 +54,7 @@ creation.
 ```
 
 **Metadata block**
+
 As implied by the name this block contains whatever JSON object you want and it
 will be ignored by the processor
 
