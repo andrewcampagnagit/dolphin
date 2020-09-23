@@ -27,7 +27,26 @@ import sys
 import os
 import json
 import logging
+import requests
 from instructionparser import InstructionParser
+from exceptions import *
+
+def download_instructions():
+	"""Downloads instruction file from either file or [GET] request
+	"""
+
+	instruction_blocks = None
+
+	if sys.argv[2] in ["--get", "-G"]:
+		instruction_blocks = json.loads(requests.get(sys.argv[3]).content)
+
+	elif sys.argv[2] in ["--file", "-f"]:
+		instruction_blocks = json.load(open(sys.argv[3]))
+
+	else:
+		raise Exception(INSTRUCTION_DL_FUNC_NOTFOUND)
+
+	return instruction_blocks
 
 def deploy():
 	"""Loads a new parser from mode configuration in instruction block file.
@@ -37,31 +56,23 @@ def deploy():
 	"""
 
 	try:
-
-		# Check if argument was passed and if file exists before proceeding.
-		if len(sys.argv) < 3:
-			raise Exception("No file path provided")
-		if not os.path.exists(sys.argv[2]):
-			raise Exception("Couldn't find instruction file " + sys.argv[2])
-
-		with open(sys.argv[2], "r") as instruction_block_file:
-			instruction_blocks = json.load(instruction_block_file)
-
-		parser = InstructionParser(instruction_blocks["settings"]["mode"],
-								   instruction_blocks["settings"]["varpath"])
-
-		for block in instruction_blocks["blocks"]:
-			parser.parseblock(block)
-
+		instruction_blocks = download_instructions()
 	except Exception as e:
-			logging.error(e)
+		logging.error(e)
+		exit()
+
+	parser = InstructionParser(instruction_blocks["settings"]["mode"],
+							   instruction_blocks["settings"]["varpath"])
+
+	for block in instruction_blocks["blocks"]:
+		parser.parseblock(block)
 
 if __name__ == "__main__":
 
-	if sys.argv[1] == "deploy":
+	if sys.argv[1] in ["deploy", "-d"]:
 		deploy()
 	else:
-		logging.error("Unknown command "+ sys.argv[1])
+		logging.error(DOLPHIN_COMMAND_FUNC_NOTFOUND)
 
 
 
