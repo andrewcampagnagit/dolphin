@@ -92,25 +92,28 @@ modules but you can easily develop your own by following some simple conventions
 
 This processor comes with a good number of useful commands to use.
 
-- Main Instruction types
+**Main Instruction types**
 
-**create** - Creates kubernetes resource from YAML files or by making a [GET]
+- create
+Creates kubernetes resource from YAML files or by making a [GET]
 request to a repository for the YAML data.
-
-**delete** - Deletes a kubernetes resource from YAML files or by making a [GET]
+- delete
+Deletes a kubernetes resource from YAML files or by making a [GET]
 request. to a repository for the YAML data.
+- shell
+Executes a basic shell command.
 
-**shell** - Executes a basic shell command.
+**Vars instruction types**
 
-- Vars instruction types
+- ClusterIP
+Select a service to store it's ClusterIP.
+- STDOUT
+Stores last instructions stdout.
 
-**ClusterIP** - Select a service to store it's ClusterIP.
+**wait_for instruction types**
 
-**STDOUT** - Stores last instructions stdout.
-
-- wait_for instruction types
-
-**PodStatus** - Will not execute main instruction until selected pod's status is
+- PodStatus
+Will not execute main instruction until selected pod's status is
 in specified state.
 
 
