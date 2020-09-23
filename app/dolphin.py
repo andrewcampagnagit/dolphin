@@ -38,13 +38,16 @@ def cleanup():
 	if os.path.exists("tmp.yaml"):
 		os.popen("rm tmp.yaml")
 
+	if os.path.exists(".dolphin_last_out.log"):
+		os.popen("rm .dolphin_last_out.log")
+
 def download_instructions():
 	"""Downloads instruction file from either file or [GET] request.
 	"""
 
 	instruction_blocks = None
 
-	if sys.argv[2] in ["--get", "-G"]:
+	if sys.argv[2] in ["--GET", "-G"]:
 		instruction_blocks = json.loads(requests.get(sys.argv[3]).content)
 
 	elif sys.argv[2] in ["--file", "-f"]:
@@ -67,6 +70,18 @@ def deploy():
 	except Exception as e:
 		logging.error(e)
 		exit()
+
+	if "preload" in sys.argv:
+		try:
+			var_data = requests.get(sys.argv[-1]).content
+			var_path = instruction_blocks["settings"]["varpath"] +"/vars.json"
+
+			with open(var_path, "w+") as vars_file:
+				vars_file.write(var_data.decode("utf8"))
+
+		except Exception as e:
+			logging.error(e)
+			exit()
 
 	parser = InstructionParser(instruction_blocks["settings"]["mode"],
 							   instruction_blocks["settings"]["varpath"])

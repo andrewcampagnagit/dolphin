@@ -36,6 +36,7 @@ def processcreate(block):
     if block["from"]["type"] == "file":
         main_cmd = "kubectl create -f resources/" + block["from"]["path"]
 
+    ##  Creates a resource from a remote Kubernetes YAML file with [GET]
     elif block["from"]["type"] == "GET":
         resource_data = requests.get(block["from"]["url"]).content
 
@@ -64,9 +65,11 @@ def processdelete(block):
 
     main_cmd = var_cmd = wait_for = None
 
+    ##  Deletes a resource from a Kubernetes YAML file
     if block["from"]["type"] == "file":
         main_cmd = "kubectl delete -f resources/" + block["from"]["path"]
 
+    ##  Deletes a resource from a remote Kubernetes YAML file with [GET]
     elif block["from"]["type"] == "GET":
         resource_data = requests.get(block["from"]["url"]).content
 
