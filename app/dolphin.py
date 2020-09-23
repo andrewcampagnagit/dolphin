@@ -29,10 +29,17 @@ import json
 import logging
 import requests
 from instructionparser import InstructionParser
-from exceptions import *
+from tools.exceptions import *
+
+def cleanup():
+	"""Cleans up any temp files and folders used for deployment.
+	"""
+
+	if os.path.exists("tmp.yaml"):
+		os.popen("rm tmp.yaml")
 
 def download_instructions():
-	"""Downloads instruction file from either file or [GET] request
+	"""Downloads instruction file from either file or [GET] request.
 	"""
 
 	instruction_blocks = None
@@ -73,6 +80,8 @@ if __name__ == "__main__":
 		deploy()
 	else:
 		logging.error(DOLPHIN_COMMAND_FUNC_NOTFOUND)
+
+	cleanup()
 
 
 

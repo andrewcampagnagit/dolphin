@@ -2,6 +2,8 @@
 kubectl instruction block processor...
 """
 
+import requests
+
 def processblock(block):
     """Required method for all processors
     this is the entry point for parsing commands
@@ -34,6 +36,14 @@ def processcreate(block):
     if block["from"]["type"] == "file":
         main_cmd = "kubectl create -f resources/" + block["from"]["path"]
 
+    elif block["from"]["type"] == "GET":
+        resource_data = requests.get(block["from"]["url"]).content
+
+        with open("tmp.yaml", "w+") as resource_file:
+            resource_file.write(resource_data.decode("utf8"))
+
+        main_cmd = "kubectl create -f tmp.yaml"
+
     if "vars" in block.keys():
         var_cmd = []
         for varname in block["vars"].keys():
@@ -56,6 +66,14 @@ def processdelete(block):
 
     if block["from"]["type"] == "file":
         main_cmd = "kubectl delete -f resources/" + block["from"]["path"]
+
+    elif block["from"]["type"] == "GET":
+        resource_data = requests.get(block["from"]["url"]).content
+
+        with open("tmp.yaml", "w+") as resource_file:
+            resource_file.write(resource_data.decode("utf8"))
+
+        main_cmd = "kubectl delete -f tmp.yaml"
 
     if "vars" in block.keys():
         var_cmd = []

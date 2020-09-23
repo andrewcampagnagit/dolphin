@@ -1,3 +1,7 @@
+"""
+Custom exception messages for error handling.
+"""
+
 INSTRUCTION_DL_FUNC_NOTFOUND = """The instructions download function was not found...
 
 Please specify a function <function> <file path/url>
