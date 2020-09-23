@@ -11,14 +11,14 @@ class InstructionParser():
 
     def __init__(self, mode, varpath):
 
-        self.wait_for = None
-        self.main_cmd = None
-        self.var_cmd = None
+        self.wait_for  = None
+        self.main_cmd  = None
+        self.var_cmd   = None
         self.processor = None
-        self.varpath = varpath
+        self.varpath   = varpath
 
         if not os.path.exists(varpath):
-            os.popen()
+            os.popen("mkdir -p "+ os.getcwd() +"/" + varpath)
 
         if mode == "kubectl":
             self.processor = lambda block: kubectlblock.processblock(block)

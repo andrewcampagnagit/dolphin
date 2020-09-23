@@ -35,7 +35,7 @@ and location of variables.
 
 **Instruction blocks**\
 Multiple instruction blocks make up a deployment and when processed are refered
-to as **stages** which are the raw shell commands that actually do the resource
+to as stage which are the raw shell commands that actually do the resource
 creation.
 
 ```json
@@ -68,6 +68,36 @@ will be ignored by the processor
 ...
 ```
 
+## BlockProcessor
 
+Each instruction block is parsed by using the Block Processor selected using
+the mode key in the settings block. The job of a Block Processor is to transform
+a JSON instruction block into a stage in memory. Block Processors are selected
+by setting the mode key in the settings block. For example the kubectlblock
+BlockProcessor is set by using the mode kubectl.
+
+```json
+...
+"settings": {
+	"mode":"kubectl",
+    "varpath":"./data/"
+}
+...
+```
+
+The dolphin beta-2 project comes with the kubectlblock pre-loaded into the
+modules but you can easily develop your own by following some simple conventions.
+
+## The kubectlblock processor
+
+This processor comes with a good number of useful commands to use.
+
+- Main Instruction types
+
+**create** - Creates kubernetes resource from YAML files or by making a [GET]
+request to a repository for the YAML data.
+
+**delete** - Deletes a kubernetes resource from YAML files or by making a [GET]
+request. to a repository for the YAML data.
 
 
