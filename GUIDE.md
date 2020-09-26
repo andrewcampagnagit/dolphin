@@ -154,9 +154,40 @@ You can deploy locally by using the options with a file path to the instructions
 --file || -f
 ```
 
+Creating your first dolphin deployment is simple. Clone the repo and that's
+all there is to it-you're ready to go!
 
+```bash
+python3 app/dolphin.py deploy \
+-G https://raw.githubusercontent.com/andrewcampagnagit/dolphin/master/resources/instructions.json \
+preload https://raw.githubusercontent.com/andrewcampagnagit/dolphin/beta-2/data/vars.json
+```
 
+Should output
+```
+Dolphin version beta-2.0
+Created by Server Center - Cloud Development Software
+```
 
+Such a simple deployment yet a lot is happening behind the scenes to provide
+this simple message.
 
+Downloads instruction file remotely
+```bash
+--GET || -G
+```
+
+Downloads Vars remotely into vars.json in the specified vars path
+```
+preload
+```
+
+Go ahead and check out the content of these pages to get an idea of what is
+going on.
+
+You can deploy locally by using the options with a file path to the instructions
+```bash
+--file || -f
+```
 
 
