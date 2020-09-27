@@ -18,6 +18,7 @@ contain bugs that negatively impact deployments to production environments.
 (C) 2020 Server Center - Cloud Development Software LLC. 
 """
 
+from instructionparser import InstructionParser
 from downloader import Downloader
 from infod.messages import Messages
 from colorama import Fore, Style
@@ -35,13 +36,49 @@ def deploy():
 	comments in the InstructionParser class for the parseblock() method.
 	"""
 
-	args = parseargs()
+	instruction_blocks = None
 
-	if "get_instructions" in args.keys():
-		print("Downloading instructions from"+ args["get_instructions"])
-		print("Placing instructions into ./tmp/instructions.json")
-		Downloader.download_to(args["get_instructions"], "./tmp/instructions.json")
+	print(Fore.WHITE,end="")
+	print("Gathering resources...")
 
+	try:
+		args = parseargs()
+
+		if "get_instructions" in args.keys():
+			print(Fore.YELLOW, end="")
+			print("[GET]**************************************************")
+			print(Fore.MAGENTA, end="")
+			print("Downloading instructions from "+ args["get_instructions"])
+			print("Placing instructions into ./tmp/instructions.json")
+			Downloader.download_to(args["get_instructions"], 
+										"./tmp/instructions.json")
+			instruction_blocks = json.load(open("./tmp/instructions.json", "r"))
+			print(Style.RESET_ALL, end="")
+		else:
+			instruction_blocks = json.load(open(args["instructions_file"], "r"))
+
+		if "preload_vars" in args.keys():
+			print(Fore.YELLOW, end="")
+			print("[GET]**************************************************")
+			print(Fore.MAGENTA, end="")
+			print("Downloading vars from "+ args["preload_vars"])
+			print("Placing vars into ./tmp/vars.json")
+			Downloader.download_to(args["preload_vars"], 
+								   "./tmp/vars.json")
+			instruction_blocks["settings"]["varpath"] = "./tmp/"
+			print(Style.RESET_ALL, end="")
+
+		parser = InstructionParser(instruction_blocks["settings"]["mode"],
+								   instruction_blocks["settings"]["varpath"])
+
+		for block in instruction_blocks["blocks"]:
+			parser.parseblock(block)
+
+	except Exception as e:
+		print(Fore.RED, end="")
+		print(e)
+
+	print(Style.RESET_ALL, end="")
 	clean_and_exit()
 
 def parseargs():
@@ -55,7 +92,9 @@ def parseargs():
 		"-f":"instructions_file",
 		"--file":"instructions_file",
 		"-G":"get_instructions",
-		"--GET":"get_instructions"
+		"--GET":"get_instructions",
+		"-p":"preload_vars",
+		"--preload":"preload_vars"
 	}
 
 	current_option = None
@@ -84,6 +123,7 @@ def clean_and_exit():
 	"""
 
 	print("Cleaning up...")
+	os.popen("rm .dolphin_last_out.log")
 	os.chdir("./tmp")
 	os.popen("rm -r *")
 	exit()

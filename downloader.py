@@ -18,7 +18,7 @@ class Downloader():
 				dest_file.write(response.text)
 
 		except HTTPError as http_error:
-			print(http_error)
+			raise(Exception(http_error))
 
 		except Exception as e:
-			print(e)
+			raise(Exception(e))
