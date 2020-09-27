@@ -1,6 +1,6 @@
 """
 Dolphin - Cloud deployment and packaging framework.
-Version: BETA 1.0
+Version: BETA 3.0
 Summary:
 Dolphin aims to ease the multistage cloud application deployment process
 by creating instruction blocks for each part of the process. What makes this
