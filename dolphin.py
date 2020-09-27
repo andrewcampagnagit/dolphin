@@ -44,7 +44,7 @@ def deploy():
 	try:
 		args = parseargs()
 
-		if "from_manifest" in args.keys():
+		if "from_manifest_get" in args.keys():
 			print(Fore.YELLOW, end="")
 			print("[GET]**************************************************")
 			print(Fore.MAGENTA, end="")
@@ -53,6 +53,21 @@ def deploy():
 			Downloader.download_to(args["get_instructions"], 
 										"./tmp/manifest.json")
 			manifest = json.load(open("./tmp/manifest.json", "r"))
+
+			if "var_url" in manifest.keys():
+				args["preload_vars"] = manifest["var_url"]
+
+			if "instructions_url" in manifest.keys():
+				args["get_instructions"] = manifest["instructions_url"]
+
+			print(Style.RESET_ALL, end="")
+
+		elif "from_manifest_file" in args.keys():
+			print(Fore.YELLOW, end="")
+			print("*******************************************************")
+			print(Fore.MAGENTA, end="")
+			print("Loading manifest from file "+ args["from_manifest_file"])
+			manifest = json.load(open(args["from_manifest_file"], "r"))
 
 			if "var_url" in manifest.keys():
 				args["preload_vars"] = manifest["var_url"]
@@ -113,8 +128,10 @@ def parseargs():
 		"--GET":"get_instructions",
 		"-p":"preload_vars",
 		"--preload":"preload_vars",
-		"-m":"from_manifest",
-		"--manifest"
+		"-mG":"from_manifest_get",
+		"--manifest-get":"from_manifest_get",
+		"-mF":"from_manifest_file",
+		"--manifest-file":"from_manifest_file"
 	}
 
 	current_option = None
