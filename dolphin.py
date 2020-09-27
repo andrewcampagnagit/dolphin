@@ -44,6 +44,24 @@ def deploy():
 	try:
 		args = parseargs()
 
+		if "from_manifest" in args.keys():
+			print(Fore.YELLOW, end="")
+			print("[GET]**************************************************")
+			print(Fore.MAGENTA, end="")
+			print("Downloading manifest from "+ args["from_manifest"])
+			print("Placing instructions into ./tmp/instructions.json")
+			Downloader.download_to(args["get_instructions"], 
+										"./tmp/manifest.json")
+			manifest = json.load(open("./tmp/manifest.json", "r"))
+
+			if "var_url" in manifest.keys():
+				args["preload_vars"] = manifest["var_url"]
+
+			if "instructions_url" in manifest.keys():
+				args["get_instructions"] = manifest["instructions_url"]
+
+			print(Style.RESET_ALL, end="")
+
 		if "get_instructions" in args.keys():
 			print(Fore.YELLOW, end="")
 			print("[GET]**************************************************")
@@ -94,7 +112,9 @@ def parseargs():
 		"-G":"get_instructions",
 		"--GET":"get_instructions",
 		"-p":"preload_vars",
-		"--preload":"preload_vars"
+		"--preload":"preload_vars",
+		"-m":"from_manifest",
+		"--manifest"
 	}
 
 	current_option = None
