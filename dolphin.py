@@ -48,9 +48,9 @@ def deploy():
 			print(Fore.YELLOW, end="")
 			print("[GET]**************************************************")
 			print(Fore.MAGENTA, end="")
-			print("Downloading manifest from "+ args["from_manifest"])
+			print("Downloading manifest from "+ args["from_manifest_get"])
 			print("Placing instructions into ./tmp/instructions.json")
-			Downloader.download_to(args["get_instructions"], 
+			Downloader.download_to(args["from_manifest_get"], 
 										"./tmp/manifest.json")
 			manifest = json.load(open("./tmp/manifest.json", "r"))
 
