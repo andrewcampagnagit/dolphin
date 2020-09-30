@@ -38,7 +38,7 @@ class InstructionParser():
 
         print(test)
 
-        return os.popen(test["script"]).read() == test["expected_result"] + "\n"
+        return os.popen(test["script"]).read() == test["expected_result"]
 
     def _runblock(self):
         """Runs instruction block...
