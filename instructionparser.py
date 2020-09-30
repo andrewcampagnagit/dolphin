@@ -31,6 +31,19 @@ class InstructionParser():
         self.main_cmd, self.var_cmd, self.wait_for = self.processor(block)
         self._runblock()
 
+    def run_test(self, test):
+        """Runs test block and returns boolean value for the result of the
+        specified test...
+        """
+
+        output = os.popen(test["script"]).read()
+
+        if output == test["expected_result"]:
+            return True
+
+        else:
+            return False
+
     def _runblock(self):
         """Runs instruction block...
         """

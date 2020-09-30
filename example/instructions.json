@@ -16,5 +16,13 @@
 			"type":"shell",
 			"cmd":"echo \"Hello dolphin!\nVersion: %version%\""
 		}
+	],
+
+	"tests": [
+
+		{
+			"script":"echo \"test\"",
+			"expected_output":"test"
+		}
 	]
 }

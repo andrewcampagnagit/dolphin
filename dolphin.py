@@ -44,6 +44,7 @@ def deploy():
 	try:
 		args = parseargs()
 
+		# Working with manifests - should abstract this...manifests could be files
 		if "from_manifest_get" in args.keys():
 			print(Fore.YELLOW, end="")
 			print("[GET]**************************************************")
@@ -77,6 +78,7 @@ def deploy():
 
 			print(Style.RESET_ALL, end="")
 
+		# Working with instructions file
 		if "get_instructions" in args.keys():
 			print(Fore.YELLOW, end="")
 			print("[GET]**************************************************")
@@ -90,6 +92,7 @@ def deploy():
 		else:
 			instruction_blocks = json.load(open(args["instructions_file"], "r"))
 
+		# Working with vars file
 		if "preload_vars" in args.keys():
 			print(Fore.YELLOW, end="")
 			print("[GET]**************************************************")
@@ -105,7 +108,14 @@ def deploy():
 								   instruction_blocks["settings"]["varpath"])
 
 		for block in instruction_blocks["blocks"]:
+			print("[INSTRUCTION BLOCK]************************************")
 			parser.parseblock(block)
+
+		for test in instruction_blocks["tests"]:
+			print("[TEST BLOCK]*******************************************")
+			if not parser.run_test(test):
+				print(test["script"])
+				raise Exception(Messages.get_exception_msg("5"))
 
 	except Exception as e:
 		print(Fore.RED, end="")
