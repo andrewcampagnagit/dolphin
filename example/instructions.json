@@ -22,7 +22,7 @@
 
 		{
 			"script":"echo \"test\"",
-			"expected_output":"test"
+			"expected_result":"test"
 		}
 	]
 }

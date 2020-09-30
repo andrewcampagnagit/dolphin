@@ -114,6 +114,8 @@ def deploy():
 		for test in instruction_blocks["tests"]:
 			print("[TEST BLOCK]*******************************************")
 			if not parser.run_test(test):
+				print(Fore.RED, end="")
+				print("Failed test block")
 				print(test["script"])
 				raise Exception(Messages.get_exception_msg("5"))
 
