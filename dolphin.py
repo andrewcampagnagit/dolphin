@@ -118,12 +118,17 @@ def deploy():
 				print("Failed test block")
 				print(test["script"])
 				raise Exception(Messages.get_exception_msg("5"))
+			else:
+				print(Fore.GREEN, end="")
+				print("PASS")
+				print(Style.RESET_ALL, end="")
 
 	except Exception as e:
 		print(Fore.RED, end="")
 		print(e)
-
+	
 	print(Style.RESET_ALL, end="")
+	print("[CLEAN UP]*********************************************")
 	clean_and_exit()
 
 def parseargs():
