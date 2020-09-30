@@ -36,8 +36,9 @@ class InstructionParser():
         specified test...
         """
 
+        print(test)
+
         output = os.popen(test["script"]).read()
-        print(output)
 
         if output == test["expected_result"]:
             return True
