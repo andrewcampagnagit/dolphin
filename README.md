@@ -24,3 +24,7 @@ BlockProcessors, but you can write your own processor easily.
 **Comprehensive guide** <URL_TO_GUIDE>
 
 **Project contribution rules** <URL_TO_HOW_TO_CONTRIBUTE>
+
+#### How to install
+
+
