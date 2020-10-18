@@ -15,7 +15,7 @@ mkdir package_name
 
 Mount dolphin to the directory and run the package-create program that comes with dolphin
 ```bash
-docker run --mount type=bind,source="$(pwd)"/,target=/dolphin/package_name \
+podman run --mount type=bind,source="$(pwd)"/,target=/dolphin/package_name \
 dolphin:latest \
 package-create package_name
 ```
