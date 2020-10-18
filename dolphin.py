@@ -21,6 +21,7 @@ contain bugs that negatively impact deployments to production environments.
 from instructionparser import InstructionParser
 from downloader import Downloader
 from infod.messages import Messages
+from packager.packager import Packager
 from colorama import Fore, Style
 import sys, os, json, logging
 import time
@@ -190,6 +191,8 @@ if __name__ == "__main__":
 		if len(sys.argv) > 1:
 			if sys.argv[1] == "deploy":
 				deploy()
+			elif sys.argv[1] == "package-create":
+				Packager.create_package(sys.argv[2])
 			else:
 				raise(Exception(Messages.get_exception_msg("3")))
 		else:

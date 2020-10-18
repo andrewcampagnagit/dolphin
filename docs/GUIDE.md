@@ -8,9 +8,19 @@ In this guide, you will learn the how to create and deploy dolphin packages, wor
 
 Getting started is quick and easy with the dolphin packager. Simply use the **create** option with the **package** command to generate a boilerplate for your project. 
 
+Create a directory to mount dolphin to create package files
 ```bash
-podman run dolphin package create <package_name>
+mkdir package_name
 ```
+
+Mount dolphin to the directory and run the package-create program that comes with dolphin
+```bash
+docker run --mount type=bind,source="$(pwd)"/,target=/dolphin/package_name \
+dolphin:latest \
+package-create package_name
+```
+
+**Note** The mount target absolute path must start at /dolphin and end with the same name of the directory you created in the previous command.
 
 You should see a structure like this created
 
