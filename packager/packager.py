@@ -26,13 +26,17 @@ class Packager():
 				}
 			],
 			"tests": [
+				{
+					"script":"echo \"It works!\"",
+					"expected_result":"It works!\n"
+				}
 			]
 		}
 
 		vars_template = {"version":"beta-3"}
 		instruction_template["meta"]["name"] = name
-		instruction_template["settings"]["varpath"] = "./"+ name +"/data/"
-		
+		instruction_template["settings"]["varpath"] = "/"+ name +"/data/"
+
 		os.popen("mkdir -p "+ name +"/data").read()
 		os.chdir(name)
 		print(os.getcwd())

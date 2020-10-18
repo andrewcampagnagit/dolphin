@@ -129,8 +129,7 @@ def deploy():
 		print(e)
 	
 	print(Style.RESET_ALL, end="")
-	print("[CLEAN UP]*********************************************")
-	clean_and_exit()
+	exit()
 
 def parseargs():
 	"""Helper function to parse command line arguments into a dictionary.
@@ -172,16 +171,6 @@ def parseargs():
 		raise(Exception(Messages.get_exception_msg("2")))
 
 	return parsed
-
-def clean_and_exit():
-	"""Cleans up all downloaded files in the ./tmp directory and exits.
-	"""
-
-	print("Cleaning up...")
-	os.popen("rm .dolphin_last_out.log")
-	os.chdir("./tmp")
-	os.popen("rm -r *")
-	exit()
 
 if __name__ == "__main__":
 
