@@ -9,7 +9,7 @@ In this guide, you will learn the how to create and deploy dolphin packages, wor
 Getting started is quick and easy with the dolphin packager. Simply use the **create** option with the **package** command to generate a boilerplate for your project. 
 
 ```bash
-dolphin package create <package_name>
+podman run dolphin package create <package_name>
 ```
 
 You should see a structure like this created
@@ -25,7 +25,9 @@ You should see a structure like this created
 The instructions and vars created for you will contain a simple deployment setup. You can deploy from file by using the **deploy** command.
 
 ```bash
-dolphin deploy --file package_name/instructions.json
+podman run -v $(pwd)/package_name:/package_name \
+dolphin:latest deploy \
+--file /package_name/instructions.json
 ```
 
 The output should be as follows (for beta-3)
@@ -132,7 +134,8 @@ For manifest file deployments use the following options:
 
 Example: Deploy from a remote manifest file
 ```bash
-dolphin deploy --manifest-get https://<domain>/manifest.json
+podman run dolphin:latest deploy \
+--manifest-get https://<domain>/manifest.json
 ```
 
 You can specify just an instructions and vars files from either an HTTP GET or local the same way. It must be noted that if you do not specify vars dolphin will still utilize any preset vars in the vars.json file in the path specified in the instructions settings. If no vars are found it will be created for you at deployment time.
@@ -153,7 +156,9 @@ To load vars you use the **preload** option to do so. There is only HTTP GET as 
 
 Example: Deploy from local instructions and preload remote vars
 ```bash
-dolphin deploy --file /path/to/instructions.json --preload https://<domain>/vars.json
+podman run -v /path_to_instructions:/path_to_instructions dolphin:latest deploy \
+--file /path_to_instructions/instructions.json \
+--preload https://<domain>/vars.json
 ```
 
 
