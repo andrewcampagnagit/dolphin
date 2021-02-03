@@ -19,10 +19,10 @@ contain bugs that negatively impact deployments to production environments.
 (C) 2020 Server Center - Cloud Development Software LLC. 
 """
 
-from instructionparser import InstructionParser
-from downloader import Downloader
-from infod.messages import Messages
-from packager.packager import Packager
+from dolphinpkg.instructionparser import InstructionParser
+from dolphinpkg.downloader import Downloader
+from dolphinpkg.infod.messages import Messages
+from dolphinpkg.packager.packager import Packager
 from colorama import Fore, Style
 import sys, os, json, logging
 import time
@@ -52,10 +52,10 @@ def deploy():
 			print("[GET]**************************************************")
 			print(Fore.MAGENTA, end="")
 			print("Downloading manifest from "+ args["from_manifest_get"])
-			print("Placing instructions into ./tmp/instructions.json")
+			print("Placing instructions into /tmp/instructions.json")
 			Downloader.download_to(args["from_manifest_get"], 
-										"./tmp/manifest.json")
-			manifest = json.load(open("./tmp/manifest.json", "r"))
+										"/tmp//manifest.json")
+			manifest = json.load(open("/tmp//manifest.json", "r"))
 
 			if "var_url" in manifest.keys():
 				args["preload_vars"] = manifest["var_url"]
@@ -86,10 +86,10 @@ def deploy():
 			print("[GET]**************************************************")
 			print(Fore.MAGENTA, end="")
 			print("Downloading instructions from "+ args["get_instructions"])
-			print("Placing instructions into ./tmp/instructions.json")
+			print("Placing instructions into /tmp/instructions.json")
 			Downloader.download_to(args["get_instructions"], 
-										"./tmp/instructions.json")
-			instruction_blocks = json.load(open("./tmp/instructions.json", "r"))
+										"/tmp/instructions.json")
+			instruction_blocks = json.load(open("/tmp/instructions.json", "r"))
 			print(Style.RESET_ALL, end="")
 		else:
 			instruction_blocks = json.load(open(args["instructions_file"], "r"))
@@ -100,10 +100,10 @@ def deploy():
 			print("[GET]**************************************************")
 			print(Fore.MAGENTA, end="")
 			print("Downloading vars from "+ args["preload_vars"])
-			print("Placing vars into ./tmp/vars.json")
+			print("Placing vars into /tmp/vars.json")
 			Downloader.download_to(args["preload_vars"], 
-								   "./tmp/vars.json")
-			instruction_blocks["settings"]["varpath"] = "./tmp/"
+								   "/tmp/vars.json")
+			instruction_blocks["settings"]["varpath"] = "/tmp/"
 			print(Style.RESET_ALL, end="")
 
 		parser = InstructionParser(instruction_blocks["settings"]["mode"],
