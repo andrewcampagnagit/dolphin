@@ -10,7 +10,7 @@ Getting started is quick and easy with the dolphin packager. Simply use the **cr
 
 Utilize dolpings package-create program to generate a new package
 ```bash
-python3 dolphin.py package-create package_name
+dolphin package-create package_name
 ```
 
 You should see a structure like this created
@@ -26,7 +26,7 @@ You should see a structure like this created
 The instructions and vars created for you will contain a simple deployment setup. You can deploy from file by using the **deploy** command.
 
 ```bash
-python3 dolphin.py deploy --file /package_name/instructions.json
+dolphin deploy --file /package_name/instructions.json
 ```
 
 The output should be as follows (for beta-3)
@@ -139,7 +139,7 @@ For manifest file deployments use the following options:
 
 Example: Deploy from a remote manifest file
 ```bash
-python3 dolphin.py deploy --manifest-get https://<domain>/manifest.json
+dolphin deploy --manifest-get https://<domain>/manifest.json
 ```
 
 You can specify just an instructions and vars files from either an HTTP GET or local the same way. It must be noted that if you do not specify vars dolphin will still utilize any preset vars in the vars.json file in the path specified in the instructions settings. If no vars are found it will be created for you at deployment time.
@@ -160,7 +160,7 @@ To load vars you use the **preload** option to do so. There is only HTTP GET as 
 
 Example: Deploy from local instructions and preload remote vars
 ```bash
-python3 dolphin.py deploy  \
+dolphin deploy  \
 --file /path_to_instructions/instructions.json \
 --preload https://<domain>/vars.json
 ```
