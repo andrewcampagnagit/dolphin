@@ -14,7 +14,7 @@ class Packager():
 		instruction_template = {
 			"settings": {
 				"mode":"kubectl",
-				"varpath":""
+				"varpath":"data/"
 			},
 			"meta": {
 				"name":""
@@ -35,7 +35,6 @@ class Packager():
 
 		vars_template = {"version":"beta-3"}
 		instruction_template["meta"]["name"] = name
-		instruction_template["settings"]["varpath"] = "/"+ name +"/data/"
 
 		os.popen("mkdir -p "+ name +"/data").read()
 		os.chdir(name)

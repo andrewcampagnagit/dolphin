@@ -13,7 +13,7 @@ class Messages():
 		and returns the data.
 		"""
 
-		messages = json.load(open("infod/EXCEPTIONS.json", "r"))
+		messages = json.load(open("/usr/local/bin/dolphinpkg/infod/EXCEPTIONS.json", "r"))
 		return messages[code]
 
 	@classmethod
@@ -22,7 +22,7 @@ class Messages():
 		and returns the data.
 		"""
 
-		messages = json.load(open("infod/INFO.json", "r"))
+		messages = json.load(open("/usr/local/bin/dolphinpkg/infod/INFO.json", "r"))
 		return messages[code]
 
 	@classmethod
@@ -31,5 +31,5 @@ class Messages():
 		and returns the data.
 		"""
 
-		messages = json.load(open("infod/USAGE.json", "r"))
+		messages = json.load(open("/usr/local/bin/dolphinpkg/infod/USAGE.json", "r"))
 		return messages[code]
