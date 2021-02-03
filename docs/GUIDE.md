@@ -145,17 +145,17 @@ python3 dolphin.py deploy --manifest-get https://<domain>/manifest.json
 You can specify just an instructions and vars files from either an HTTP GET or local the same way. It must be noted that if you do not specify vars dolphin will still utilize any preset vars in the vars.json file in the path specified in the instructions settings. If no vars are found it will be created for you at deployment time.
 
 ```
--f 				from local instructions file
---file 				from local instructions file
--G 				from remote instructions file retrieved with HTTP GET
---GET 				from remote instructions file retrieved with HTTP GET
+-f 			 from local instructions file
+--file 			 from local instructions file
+-G 			 from remote instructions file retrieved with HTTP GET
+--GET 			 from remote instructions file retrieved with HTTP GET
 ```
 
 To load vars you use the **preload** option to do so. There is only HTTP GET as an option for this because if a local vars.json file exists it should be loaded automatically from the directory specified in the instructions.
 
 ```
--p 				from remote vars file retrieved with HTTP GET
---preload 			from remote vars file retrieved with HTTP GET
+-p 			  from remote vars file retrieved with HTTP GET
+--preload 		  from remote vars file retrieved with HTTP GET
 ```
 
 Example: Deploy from local instructions and preload remote vars
