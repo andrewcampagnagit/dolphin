@@ -9,27 +9,15 @@ Dolphin aims to ease the multistage cloud application deployment process by crea
 
 #### Fast start guide
 
-Dolphin is packaged into a Red Hat Enterprise Linux container image for the best cross platform compatability.
+Clone the repository
 
-**For Linux users** We reccomend podman
-**For Windows, Mac, and all other OS** We reccomend docker
-
-Pull down the image from quay.io
 ```bash
-podman pull quay.io/dolphin/dolphin:latest
-```
-or 
-```bash
-docker pull quay.io/dolphin/dolphin:latest
+git clone https://github.com/andrewcampagnagit/dolphin.git
 ```
 
 Run the example instructions
 ```bash
-podman run dolphin:latest deploy -mF /dolphin/example/manifest.json
-```
-or
-```bash
-docker run dolphin:latest deploy -mF /dolphin/example/manifest.json
+python3 dolphin.py deploy -mF /dolphin/example/manifest.json
 ```
 
 You should see the output of the example deployment to confirm your dolphin deployment container is functioning properly
