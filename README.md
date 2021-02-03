@@ -2,12 +2,6 @@
 
 [![Generic badge](https://img.shields.io/badge/python-3.7-blue)](https://shields.io/)
 [![Generic badge](https://img.shields.io/badge/dolphin-beta--3-orange)](https://shields.io)
-[![Generic badge](https://img.shields.io/badge/kubernetes-1.18.0-blue)](https://shields.io)
-
-#### Beta 3 is here!
-
-We intend Beta 3 to be a final development prior to starting any gamma testing! Though probably buggy
-this will serve as the code base for many future versions of Dolphin.
 
 #### Summary
 
