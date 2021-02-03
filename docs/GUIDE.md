@@ -136,9 +136,9 @@ This file can be used with the manifest options to retrieve both instructions an
 For manifest file deployments use the following options:
 
 ```
--mG 				from remote manifest file retrieved with HTTP GET
+-mG 			from remote manifest file retrieved with HTTP GET
 --manifest-get 		from remote manifest file retrieved with HTTP GET
--mF 				from local manifest file
+-mF 			from local manifest file
 --manifest-file 	from local manifest file
 ```
 
