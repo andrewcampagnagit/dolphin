@@ -8,19 +8,10 @@ In this guide, you will learn the how to create and deploy dolphin packages, wor
 
 Getting started is quick and easy with the dolphin packager. Simply use the **create** option with the **package** command to generate a boilerplate for your project. 
 
-Create a directory to mount dolphin to create package files
+Utilize dolpings package-create program to generate a new package
 ```bash
-mkdir package_name
+python3 dolphin.py package-create package_name
 ```
-
-Mount dolphin to the directory and run the package-create program that comes with dolphin
-```bash
-podman run --mount type=bind,source="$(pwd)"/,target=/dolphin/package_name \
-dolphin:latest \
-package-create package_name
-```
-
-**Note** The mount target absolute path must start at /dolphin and end with the same name of the directory you created in the previous command.
 
 You should see a structure like this created
 
@@ -35,9 +26,7 @@ You should see a structure like this created
 The instructions and vars created for you will contain a simple deployment setup. You can deploy from file by using the **deploy** command.
 
 ```bash
-podman run -v $(pwd)/package_name:/package_name \
-dolphin:latest deploy \
---file /package_name/instructions.json
+python3 dolphin.py deploy --file /package_name/instructions.json
 ```
 
 The output should be as follows (for beta-3)
@@ -122,6 +111,12 @@ Block 3: Prints the resource-ip vars contents to stdout
 
 ## Various commands
 
+Due to additional programs such as package-create being available you must specify which program to use as the first argument
+```
+deploy		       dolphin deployment program
+package-create	       application packaging program
+```
+
 There are several ways you can configure your deployment package for both local and remote use. Both the out of the box kubectlblock processor and dolphin itself comes with a way to download remote resources using simple HTTP GET requests. You can condense your deployment down to a single **manifest** file for easy distribution. Below is an example manifest file.
 
 ```json
@@ -144,8 +139,7 @@ For manifest file deployments use the following options:
 
 Example: Deploy from a remote manifest file
 ```bash
-podman run dolphin:latest deploy \
---manifest-get https://<domain>/manifest.json
+python3 dolphin.py deploy --manifest-get https://<domain>/manifest.json
 ```
 
 You can specify just an instructions and vars files from either an HTTP GET or local the same way. It must be noted that if you do not specify vars dolphin will still utilize any preset vars in the vars.json file in the path specified in the instructions settings. If no vars are found it will be created for you at deployment time.
@@ -166,7 +160,7 @@ To load vars you use the **preload** option to do so. There is only HTTP GET as 
 
 Example: Deploy from local instructions and preload remote vars
 ```bash
-podman run -v /path_to_instructions:/path_to_instructions dolphin:latest deploy \
+python3 dolphin.py deploy  \
 --file /path_to_instructions/instructions.json \
 --preload https://<domain>/vars.json
 ```
