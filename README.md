@@ -10,14 +10,18 @@ Dolphin aims to ease the multistage cloud application deployment process by crea
 #### Fast start guide
 
 Clone the repository
-
 ```bash
 git clone https://github.com/andrewcampagnagit/dolphin.git
 ```
 
+Run the setup shell script
+```bash
+bash setup.sh
+```
+
 Run the example instructions
 ```bash
-python3 dolphin.py deploy -mF /dolphin/example/manifest.json
+dolphin deploy -mF /dolphin/example/manifest.json
 ```
 
 You should see the output of the example deployment to confirm your dolphin deployment container is functioning properly
