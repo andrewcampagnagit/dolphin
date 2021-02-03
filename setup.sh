@@ -1,3 +1,4 @@
-cp dolphin.py dolphin
+mkdir /usr/local/bin/dolphinpkg
+cp -a . /usr/local/bin/dolphinpkg
 chmod +x dolphin
-mv dolphin /usr/local/bin/dolphin
+cp dolphin /usr/local/bin/dolphin

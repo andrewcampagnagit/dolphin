@@ -19,10 +19,10 @@ contain bugs that negatively impact deployments to production environments.
 (C) 2020 Server Center - Cloud Development Software LLC. 
 """
 
-from instructionparser import InstructionParser
-from downloader import Downloader
-from infod.messages import Messages
-from packager.packager import Packager
+from dolphinpkg.instructionparser import InstructionParser
+from dolphinpkg.downloader import Downloader
+from dolphinpkg.infod.messages import Messages
+from dolphinpkg.packager.packager import Packager
 from colorama import Fore, Style
 import sys, os, json, logging
 import time

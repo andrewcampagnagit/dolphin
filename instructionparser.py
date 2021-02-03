@@ -1,4 +1,4 @@
-import BlockProcessors.kubectlblock as kubectlblock
+import dolphinpkg.BlockProcessors.kubectlblock as kubectlblock
 import os
 import time
 import json
