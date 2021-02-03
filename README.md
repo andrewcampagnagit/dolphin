@@ -21,7 +21,7 @@ bash setup.sh
 
 Run the example instructions
 ```bash
-dolphin deploy -mF /dolphin/example/manifest.json
+dolphin deploy -mF /usr/local/bin/dolphinpkg/example/manifest.json
 ```
 
 You should see the output of the example deployment to confirm your dolphin deployment container is functioning properly
