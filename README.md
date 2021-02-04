@@ -59,8 +59,8 @@ Cleaning up...
 
 You're ready to go! See below for more information.
 
-**Comprehensive guide** <URL_TO_GUIDE>
+**Comprehensive guide** https://github.com/andrewcampagnagit/dolphin/blob/beta-3/docs/GUIDE.md
 
-**Project contribution rules** <URL_TO_HOW_TO_CONTRIBUTE>
+**Project contribution rules** https://github.com/andrewcampagnagit/dolphin/blob/beta-3/docs/CONTRIB_RULES.md
 
 
