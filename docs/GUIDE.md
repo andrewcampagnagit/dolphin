@@ -98,7 +98,7 @@ Out of the box dolphin comes with the kubectlblock **BlockProcessor** and it con
 
     {
     	"type": "shell",
-    	"cmd": "echo \"%resource-ip\""
+    	"cmd": "echo \"%resource-ip%\""
     }
 ]
 ```
