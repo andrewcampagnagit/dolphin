@@ -1,0 +1,21 @@
+{
+    "settings": {
+        "mode": "kubectl",
+        "varpath": "data/"
+    },
+    "meta": {
+        "name": "simple"
+    },
+    "blocks": [
+        {
+            "type": "shell",
+            "cmd": "echo \"Hello dolphin!\nVersion: %version%\""
+        }
+    ],
+    "tests": [
+        {
+            "script": "echo \"It works!\"",
+            "expected_result": "It works!\n"
+        }
+    ]
+}

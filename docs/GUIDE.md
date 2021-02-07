@@ -2,7 +2,7 @@
 
 In this guide, you will learn the how to create and deploy dolphin packages, work with vars, create test blocks, utilize various useful command-line options, and develop custom BlockProcessors.
 
-## Section 1. Quick start
+## Section 1. Introduction
 
 #### Create your first dolphin package and deploy
 
@@ -164,5 +164,80 @@ dolphin deploy  \
 --file /path_to_instructions/instructions.json \
 --preload https://<domain>/vars.json
 ```
+
+## Section 2. Building an instruction file
+
+#### Settings
+
+The settings section is where you can select the processor **mode** and describe your desired **varpath**. This section can also be used to store metadata about the deployment or objects to be used with custom block processor modules.
+
+In this example we have selected **kubectl** mode to tell dolphin to deploy using the **kubectlblock** processor.
+
+```json
+"settings": {
+        "mode":"kubectl",
+        "varpath":"./data/"
+},
+```
+
+For development the **mode** is value is used in the **instructionparser.py**
+
+```python
+if mode == "kubectl":
+    self.processor = lambda block: kubectlblock.processblock(block)
+```
+
+#### Instruction blocks
+
+Everything is based around three simple programatic states that dolphin uses to deploy packages.
+
+1. main cmd - create / destroy resource
+2. wait for - waits for specified state to be returned from cloud API
+3. vars - store values from cloud API dynamically
+
+When developing a custom block processor all functions should return back to the parser these three things in the order of: (main_cmd, var_cmd, wait_for)
+
+#### Test blocks
+
+Built into dolphin is a very simple automated sanity test instruction block. In the beta version this can not be customized; however, you can add tests to your own custom block processor module in place of this.
+
+Use the **script** key along with a shell script value along with the **expected_result** key with the plain text output you expect. The STDOUT from the script will be matched against your expected result and determine a PASS/FAIL
+
+Simple test blocks that match an echo script's STDOUT to an expected result.
+
+```json
+"tests": [
+
+        {
+            "script":"echo \"test\"",
+            "expected_result":"test\n"
+        },
+
+        {
+            "script":"echo \"test1\"",
+            "expected_result":"test1\n"
+        },
+
+        {
+            "script":"echo \"test2\"",
+            "expected_result":"test2\n"
+        }
+    ]
+```
+
+Output
+
+```
+[TEST BLOCK]*******************************************
+{'script': 'echo "test"', 'expected_result': 'test\n'}
+PASS
+[TEST BLOCK]*******************************************
+{'script': 'echo "test1"', 'expected_result': 'test1\n'}
+PASS
+[TEST BLOCK]*******************************************
+{'script': 'echo "test2"', 'expected_result': 'test2\n'}
+PASS
+```
+
 
 
