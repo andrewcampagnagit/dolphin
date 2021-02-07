@@ -2,7 +2,7 @@
 
 In this guide, you will learn the how to create and deploy dolphin packages, work with vars, create test blocks, utilize various useful command-line options, and develop custom BlockProcessors.
 
-## Section 1. Quick start guide
+## Section 1. Quick start
 
 #### Create your first dolphin package and deploy
 
