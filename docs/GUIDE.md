@@ -2,9 +2,9 @@
 
 In this guide, you will learn the how to create and deploy dolphin packages, work with vars, create test blocks, utilize various useful command-line options, and develop custom BlockProcessors.
 
-## Architecture
+## Section 1. Quick start guide
 
-## Create your first dolphin package and deploy
+#### Create your first dolphin package and deploy
 
 Getting started is quick and easy with the dolphin packager. Simply use the **create** option with the **package** command to generate a boilerplate for your project. 
 
@@ -46,7 +46,7 @@ instructions=1 tests=0
 Done!
 ```
 
-## Instruction blocks
+#### Instruction blocks
 
 The instruction blocks can be found in this section of the instructions file
 
@@ -109,7 +109,7 @@ Block 2: Waits for the pod resource to be in the "Ready" status before creating 
 
 Block 3: Prints the resource-ip vars contents to stdout
 
-## Various commands
+#### Various commands
 
 Due to additional programs such as package-create being available you must specify which program to use as the first argument
 ```
