@@ -2,21 +2,12 @@
 """
 Dolphin - Cloud deployment and packaging framework.
 Version: BETA 3.0
-Summary:
-Dolphin aims to ease the multistage cloud application deployment process
-by creating instruction blocks for each part of the process. What makes this
-process different is the robust set of functionality that dolphin features
-in its templates. You can specify instruction blocks to store
-variables from deployed resources along the way dynamically. Another great 
-feature is the ability to impose a wait instruction on a resource; this halts 
-all operations from that point in the deployment until a specific condition is
-met, like a pod in Running status. These features come with our of the box
-BlockProcessors, but you can write your own processor easily.
-Learn more at: <URL_TO_REFS>
+Guide: https://github.com/andrewcampagnagit/dolphin/blob/beta-3/docs/GUIDE.md
 Version notes:
 This version is a beta and does not come with complete functionality and could
 contain bugs that negatively impact deployments to production environments.
-(C) 2020 Server Center - Cloud Development Software LLC. 
+
+dolphin project - 2020
 """
 
 from dolphinpkg.instructionparser import InstructionParser
