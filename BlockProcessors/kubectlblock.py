@@ -4,7 +4,7 @@ kubectl instruction block processor...
 
 import requests
 
-def processblock(block):
+def processblock(block, varpath):
     """Required method for all processors
     this is the entry point for parsing commands
     from instruction blocks...
@@ -22,10 +22,29 @@ def processblock(block):
 
     ## Creates resource specified in the block
     elif block["type"] == "create":
-        return processcreate(block)
+        return processcreate(block, varpath)
 
+def _insertvars(block, varpath):
+    """Inserts vars into Kubernetes resource file...
+    """
 
-def processcreate(block):
+    with open(varpath + "vars.json", "r") as var_file:
+            var_dict = json.load(var_file)
+
+    resource = open(block["from"]["path"], "r").read()
+
+    while "%" in resource:
+        index_1 = resource.find("%") + 1
+        index_2 = resource.find("%", index_1 + 1)
+        variable = resource[index_1:index_2]
+        resource_file = resource.replace(
+            "%" + variable + "%", var_dict[variable])
+
+    with open(block["from"]["path"], "w+") as resource_file:
+        resource_file.write(resource)
+        resource_file.close()
+
+def processcreate(block, varpath):
     """Develops main create command and provides
     var and wait command configuration data...
     """
@@ -35,6 +54,7 @@ def processcreate(block):
     ##  Creates a resource from a Kubernetes YAML file
     if block["from"]["type"] == "file":
         main_cmd = "kubectl create -f resources/" + block["from"]["path"]
+        _insertvars(block["from"]["file"], varpath)
 
     ##  Creates a resource from a remote Kubernetes YAML file with [GET]
     elif block["from"]["type"] == "GET":
@@ -44,6 +64,7 @@ def processcreate(block):
             resource_file.write(resource_data.decode("utf8"))
 
         main_cmd = "kubectl create -f tmp.yaml"
+        _insertvars("tmp.yaml", varpath)
 
     if "vars" in block.keys():
         var_cmd = []
@@ -108,6 +129,27 @@ def shell(block):
             wait_for.append(processwaitfor(wait_block))
 
     return block["cmd"], var_cmd, wait_for
+
+def prompt(block):
+    """Prompts for user input and stores into pre-defined variable key...
+    """
+
+    main_cmd = var_cmd = wait_for = None
+
+    if "vars" in block.keys():
+        var_cmd = []
+        for varname in block["vars"].keys():
+            var_cmd.append(processvarcmd(varname, block["vars"][varname]))
+
+    if "wait_for" in block.keys():
+        wait_for = []
+        for wait_block in block["wait_for"]:
+            wait_for.append(processwaitfor(wait_block))
+
+    value = input(block["msg"])
+    var_cmd.append(block["var"], value)
+
+    return main_cmd, var_cmd, wait_for
 
 def processvarcmd(varname, varblock):
     """Generates var command dictionary...

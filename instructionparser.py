@@ -21,14 +21,14 @@ class InstructionParser():
             os.popen("mkdir -p "+ os.getcwd() +"/" + varpath)
 
         if mode == "kubectl":
-            self.processor = lambda block: kubectlblock.processblock(block)
+            self.processor = lambda block: kubectlblock.processblock(block, varpath)
 
     def parseblock(self, block):
         """Parses instructions from block into useable datastructures...
         """
 
         block = self._insertvars(block)
-        self.main_cmd, self.var_cmd, self.wait_for = self.processor(block)
+        self.main_cmd, self.var_cmd, self.wait_for = self.processor(block, self.varpath)
         self._runblock()
 
     def run_test(self, test):
@@ -63,6 +63,7 @@ class InstructionParser():
             variable = block_str[index_1:index_2]
             block_str = block_str.replace(
                 "%" + variable + "%", var_dict[variable])
+
         return json.loads(block_str)
 
     def _runwait(self, wait_for):

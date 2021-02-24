@@ -15,6 +15,12 @@
 		{
 			"type":"shell",
 			"cmd":"echo \"Hello dolphin!\nVersion: %version%\""
+		},
+
+		{
+			"type":"prompt",
+			"msg":"Write a message",
+			"var":"my-prompt-var"
 		}
 	],
 
