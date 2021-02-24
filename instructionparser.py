@@ -21,7 +21,7 @@ class InstructionParser():
             os.popen("mkdir -p "+ os.getcwd() +"/" + varpath)
 
         if mode == "kubectl":
-            self.processor = lambda block: kubectlblock.processblock(block, varpath)
+            self.processor = lambda block, varpath: kubectlblock.processblock(block, varpath)
 
     def parseblock(self, block):
         """Parses instructions from block into useable datastructures...
