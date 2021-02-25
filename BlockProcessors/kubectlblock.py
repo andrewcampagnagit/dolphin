@@ -130,27 +130,6 @@ def shell(block):
 
     return block["cmd"], var_cmd, wait_for
 
-def prompt(block):
-    """Prompts for user input and stores into pre-defined variable key...
-    """
-
-    main_cmd = var_cmd = wait_for = None
-
-    if "vars" in block.keys():
-        var_cmd = []
-        for varname in block["vars"].keys():
-            var_cmd.append(processvarcmd(varname, block["vars"][varname]))
-
-    if "wait_for" in block.keys():
-        wait_for = []
-        for wait_block in block["wait_for"]:
-            wait_for.append(processwaitfor(wait_block))
-
-    value = input(block["msg"])
-    var_cmd.append(block["var"], value)
-
-    return main_cmd, var_cmd, wait_for
-
 def processvarcmd(varname, varblock):
     """Generates var command dictionary...
     """
@@ -174,6 +153,11 @@ def processvarcmd(varname, varblock):
             varname,
             "cat .dolphin_last_out.log"
             )
+
+    ## Prompt for user input 
+    elif varblock["type"] == "prompt":
+        value = input(varblock["msg"] + ": ")
+        return (varname, "echo \"" + value + "\"")
 
     else:
         return None

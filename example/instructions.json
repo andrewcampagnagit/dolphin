@@ -18,27 +18,28 @@
 		},
 
 		{
-			"type":"prompt",
-			"msg":"Write a message",
-			"var":"my-prompt-var"
+			"type": "shell",
+			"cmd": "echo \"Input prompt example\"",
+
+			"vars": {
+				"test-message": {
+					"type":"prompt",
+					"msg":"Enter a message"
+				}
+			}
+		},
+
+		{
+			"type":"shell",
+			"cmd":"echo \"Prompt input = %test-message%\""
 		}
 	],
 
 	"tests": [
 
 		{
-			"script":"echo \"test\"",
-			"expected_result":"test\n"
-		},
-
-		{
-			"script":"echo \"test1\"",
-			"expected_result":"test1\n"
-		},
-
-		{
-			"script":"echo \"test2\"",
-			"expected_result":"test2\n"
+			"script":"cat ./data/vars.json",
+			"expected_result":"{\"version\": \"beta-3\", \"test-message\": \"test\"}"
 		}
 	]
 }

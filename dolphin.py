@@ -166,6 +166,11 @@ def parseargs():
 
 if __name__ == "__main__":
 
+	# Start logging
+	logging.basicConfig(level=logging.DEBUG,
+	                    format="%(asctime)-15s %(levelname)-8s %(message)s",
+	                    stream=sys.stdout)
+
 	print(sys.argv)
 
 	try:
