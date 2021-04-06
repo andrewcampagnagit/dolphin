@@ -62,10 +62,12 @@ An instruction block contains a **main command** and can also contain a **wait f
 
 Out of the box dolphin comes with the kubectlblock **BlockProcessor** and it contains various commands we can use to strategize our cloud application deployment. Take for example the following blocks.
 
+Each block has a **type** you must specify the processor to use with the following convention: **<processor>.<command>**
+
 ```json
 "blocks": [
     {
-        "type": "create",
+        "type": "kubectl.create",
         "from": {
         	"type": "GET",
         	"url": "https://<domain>/<pod_resource>.yaml",
@@ -73,7 +75,7 @@ Out of the box dolphin comes with the kubectlblock **BlockProcessor** and it con
     },
 
     {
-    	"type": "create",
+    	"type": "kubectl.create",
     	"from": {
     		"type": "GET",
     		"url": "https://<domain>/<service_resource>.yaml"
@@ -97,7 +99,7 @@ Out of the box dolphin comes with the kubectlblock **BlockProcessor** and it con
     },
 
     {
-    	"type": "shell",
+    	"type": "kubectl.shell",
     	"cmd": "echo \"%resource-ip%\""
     }
 ]
@@ -169,22 +171,12 @@ dolphin deploy  \
 
 #### Settings
 
-The settings section is where you can select the processor **mode** and describe your desired **varpath**. This section can also be used to store metadata about the deployment or objects to be used with custom block processor modules.
-
-In this example we have selected **kubectl** mode to tell dolphin to deploy using the **kubectlblock** processor.
+Set the path to your **vars** file using the settings block. If there is none dolphin will generate one for you either by using the default path **./data/vars.json** or by the specified path in **settings.varpath**
 
 ```json
 "settings": {
-        "mode":"kubectl",
         "varpath":"./data/"
 },
-```
-
-For development the **mode** is value is used in the **instructionparser.py**
-
-```python
-if mode == "kubectl":
-    self.processor = lambda block: kubectlblock.processblock(block)
 ```
 
 #### Instruction blocks
