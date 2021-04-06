@@ -31,6 +31,13 @@
 		{
 			"type":"kubectl.shell",
 			"cmd":"echo \"Prompt input = %test-message%\""
+		},
+
+		{
+			"type":"config.write.json",
+			"filepath":"./example/config.json",
+			"jsonpath":"$.app.meta.name",
+			"value":"%test-message%"
 		}
 	],
 

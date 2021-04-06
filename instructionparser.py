@@ -37,7 +37,7 @@ class InstructionParser():
             self.processor = lambda block, varpath: kubectlblock.processblock(block, varpath)
 
         elif mode[0] == "config":
-            self.processor = lambda block, varpath: config.processblock(block, varpath)
+            self.processor = lambda block, varpath: configblock.processblock(block, varpath)
 
     def parseblock(self, block):
         """Parses instructions from block into useable datastructures...
