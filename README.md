@@ -1,7 +1,7 @@
 # dolphin 
 
 [![Generic badge](https://img.shields.io/badge/python-3.7-blue)](https://shields.io/)
-[![Generic badge](https://img.shields.io/badge/dolphin-beta--3-orange)](https://shields.io)
+[![Generic badge](https://img.shields.io/badge/dolphin-beta--4-orange)](https://shields.io)
 
 #### Summary
 
@@ -28,7 +28,7 @@ You should see the output of the example deployment to confirm your dolphin depl
 ```bash
 *******************************************************
 Dolphin - Cloud deployment and packaging framework.
-dolphindev.com				   (beta-3)
+dolphindev.com				   (beta-4)
 *******************************************************
 ['dolphin.py', 'deploy', '-mF', '/dolphin/example/manifest.json']
 
