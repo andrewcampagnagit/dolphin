@@ -13,12 +13,12 @@
 	"blocks": [
 		
 		{
-			"type":"shell",
+			"type":"kubectl.shell",
 			"cmd":"echo \"Hello dolphin!\nVersion: %version%\""
 		},
 
 		{
-			"type": "shell",
+			"type": "kubectl.shell",
 			"cmd": "echo \"Input prompt example\"",
 
 			"vars": {
@@ -30,7 +30,7 @@
 		},
 
 		{
-			"type":"shell",
+			"type":"kubectl.shell",
 			"cmd":"echo \"Prompt input = %test-message%\""
 		}
 	],

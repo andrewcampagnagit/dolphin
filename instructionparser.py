@@ -1,4 +1,5 @@
 import dolphinpkg.BlockProcessors.kubectlblock as kubectlblock
+import dolphinpkg.BlockProcessors.configblock as configblock
 import os
 import time
 import json
@@ -9,7 +10,7 @@ class InstructionParser():
     dolphin job...
     """
 
-    def __init__(self, mode, varpath):
+    def __init__(self, varpath):
 
         self.wait_for  = None
         self.main_cmd  = None
@@ -20,13 +21,29 @@ class InstructionParser():
         if not os.path.exists(varpath):
             os.popen("mkdir -p "+ os.getcwd() +"/" + varpath)
 
-        if mode == "kubectl":
+    def _verboseout(self, block):
+        """Verbose output...
+        """
+
+        print(block)
+
+    def _setprocessor(self, block):
+        """Sets the processor mode...
+        """
+
+        mode = block["type"].split(".")
+
+        if mode[0] == "kubectl":
             self.processor = lambda block, varpath: kubectlblock.processblock(block, varpath)
+
+        elif mode[0] == "config":
+            self.processor = lambda block, varpath: config.processblock(block, varpath)
 
     def parseblock(self, block):
         """Parses instructions from block into useable datastructures...
         """
 
+        self._setprocessor(block)
         block = self._insertvars(block)
         self.main_cmd, self.var_cmd, self.wait_for = self.processor(block, self.varpath)
         self._runblock()

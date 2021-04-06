@@ -23,10 +23,9 @@ print(Messages.get_info_msg("STARTUP"))
 print(Style.RESET_ALL, end="")
 
 def deploy():
-	"""Loads a new parser from mode configuration in instruction block file.
-	Each block is then is processed in the parseblock(<block>) method provided
-	by the parser. To understand what this method does in depth see the
-	comments in the InstructionParser class for the parseblock() method.
+	"""Each block is then is processed in the parseblock(<block>) method 
+	provided by the parser. To understand what this method does in depth see 
+	the comments in the InstructionParser class for the parseblock() method.
 	"""
 
 	instruction_blocks = None
@@ -97,15 +96,18 @@ def deploy():
 			instruction_blocks["settings"]["varpath"] = "/tmp/"
 			print(Style.RESET_ALL, end="")
 
-		parser = InstructionParser(instruction_blocks["settings"]["mode"],
-								   instruction_blocks["settings"]["varpath"])
+		parser = InstructionParser(instruction_blocks["settings"]["varpath"])
 
 		for block in instruction_blocks["blocks"]:
+			print(Fore.WHITE,end="")
 			print("[INSTRUCTION BLOCK]************************************")
+			print(Style.RESET_ALL, end="")
 			parser.parseblock(block)
 
 		for test in instruction_blocks["tests"]:
+			print(Fore.WHITE,end="")
 			print("[TEST BLOCK]*******************************************")
+			print(Style.RESET_ALL, end="")
 			if not parser.run_test(test):
 				print(Fore.RED, end="")
 				print("Failed test block")

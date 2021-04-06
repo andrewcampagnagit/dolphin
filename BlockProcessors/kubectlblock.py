@@ -13,15 +13,15 @@ def processblock(block, varpath):
     ##  Basic shell commands can be executed using this block type. This is
     ##  good for displaying status deployment information, metadata, and
     ##  testing templates.
-    if block["type"] == "shell":
+    if block["type"] == "kubectl.shell":
         return shell(block)
 
     ##  Deletes resource specified in the block
-    elif block["type"] == "delete":
+    elif block["type"] == "kubectl.delete":
         return processdelete(block)
 
     ## Creates resource specified in the block
-    elif block["type"] == "create":
+    elif block["type"] == "kubectl.create":
         return processcreate(block, varpath)
 
 def _insertvars(block, varpath):
