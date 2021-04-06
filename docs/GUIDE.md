@@ -1,4 +1,4 @@
-# Dolphin Beta-3 Guide
+# Dolphin beta-4 Guide
 
 In this guide, you will learn the how to create and deploy dolphin packages, work with vars, create test blocks, utilize various useful command-line options, and develop custom BlockProcessors.
 
@@ -29,17 +29,17 @@ The instructions and vars created for you will contain a simple deployment setup
 dolphin deploy --file /package_name/instructions.json
 ```
 
-The output should be as follows (for beta-3)
+The output should be as follows (for beta-4)
 
 ```
 *******************************************************
 Dolphin - Cloud deployment and packaging framework.
-dolphindev.com				   (beta-3)
+dolphindev.com				   (beta-4)
 *******************************************************
 Gathering resources...
 [INSTRUCTION BLOCK]************************************
 Hello dolphin!
-Version: beta-3
+Version: beta-4
 *******************************************************
 instructions=1 tests=0
 [CLEAN UP]*********************************************
