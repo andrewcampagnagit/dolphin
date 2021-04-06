@@ -7,6 +7,16 @@
 
 Dolphin aims to ease the multistage cloud application deployment process by creating instruction blocks for each part of the process. What makes this process different is the robust set of functionality that dolphin features in its templates. You can specify instruction blocks to store variables from deployed resources dynamically. Another great feature is the ability to impose a wait instruction on a resource; this halts all operations from that point in the deployment until a specific condition is met, like a pod in Running status. For additional functionality, you can develop custom BlockProcessors to add functionality.
 
+#### Whats new?
+
+- Mode switching: Easily use multiple BlockProcessors in your instructions file
+- ConfigBlockProcessor: New out-of-box BlockProcessor for modifying various configuration files
+- Colorama fixes: Multiple terminal colorama bugs have been fixed
+- Logging: Advanced logging features & debugging features (Still developing)
+- Health: Re-run test blocks alone or develop test block only instruction files for health checking (Still developing)
+- History: See deployment and test result history (Still developing)
+- Repository server: Run dolphin as a stand alone repository server (Still developing)
+
 #### Fast start guide
 
 Clone the repository
