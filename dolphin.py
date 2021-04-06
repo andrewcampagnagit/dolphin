@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Dolphin - Cloud deployment and packaging framework.
-Version: BETA 3.0
+Version: BETA 4.0
 Guide: https://github.com/andrewcampagnagit/dolphin/blob/beta-4/docs/GUIDE.md
 Version notes:
 This version is a beta and does not come with complete functionality and could
