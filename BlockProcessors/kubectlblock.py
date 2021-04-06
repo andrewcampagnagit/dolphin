@@ -24,10 +24,6 @@ def processblock(block, varpath):
     elif block["type"] == "create":
         return processcreate(block, varpath)
 
-    ## Modifies various configuration files
-    elif block["type"] == "config":
-        processconfig(block)
-
 def _insertvars(block, varpath):
     """Inserts vars into Kubernetes resource file...
     """
