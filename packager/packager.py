@@ -13,7 +13,7 @@ class Packager():
 
 		instruction_template = {
 			"settings": {
-				"varpath":"data/"
+				"varpath": name +"/data/"
 			},
 			"meta": {
 				"name":""
