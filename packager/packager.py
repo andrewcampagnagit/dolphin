@@ -32,7 +32,7 @@ class Packager():
 			]
 		}
 
-		vars_template = {"version":"beta-3"}
+		vars_template = {"version":"beta-4"}
 		instruction_template["meta"]["name"] = name
 
 		os.popen("mkdir -p "+ name +"/data").read()
