@@ -13,7 +13,6 @@ class Packager():
 
 		instruction_template = {
 			"settings": {
-				"mode":"kubectl",
 				"varpath":"data/"
 			},
 			"meta": {
@@ -21,7 +20,7 @@ class Packager():
 			},
 			"blocks": [
 				{
-					"type":"shell",
+					"type":"kubectl.shell",
 					"cmd":"echo \"Hello dolphin!\nVersion: %version%\""
 				}
 			],
