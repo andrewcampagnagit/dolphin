@@ -26,7 +26,7 @@ You should see a structure like this created
 The instructions and vars created for you will contain a simple deployment setup. You can deploy from file by using the **deploy** command.
 
 ```bash
-dolphin deploy --file /package_name/instructions.json
+dolphin deploy --file package_name/instructions.json
 ```
 
 The output should be as follows (for beta-4)
@@ -34,16 +34,16 @@ The output should be as follows (for beta-4)
 ```
 *******************************************************
 Dolphin - Cloud deployment and packaging framework.
-dolphindev.com				   (beta-4)
+dolphindev.com                 (beta-4)
 *******************************************************
+['/usr/local/bin/dolphin', 'deploy', '--file', 'package_name/instructions.json']
 Gathering resources...
 [INSTRUCTION BLOCK]************************************
 Hello dolphin!
 Version: beta-4
-*******************************************************
-instructions=1 tests=0
-[CLEAN UP]*********************************************
-Done!
+[TEST BLOCK]*******************************************
+{'script': 'echo "It works!"', 'expected_result': 'It works!\n'}
+PASS
 ```
 
 #### Instruction blocks
