@@ -45,7 +45,7 @@
 
 		{
 			"script":"cat ./data/vars.json",
-			"expected_result":"{\"version\": \"beta-3\", \"test-message\": \"test\"}"
+			"expected_result":"{\"version\": \"beta-4\", \"test-message\": \"test\"}"
 		}
 	]
 }
