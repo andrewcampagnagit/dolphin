@@ -73,6 +73,8 @@ def write_yaml(block):
 	jsonpath_expression.update(json_data, block["value"])
 	data = jsonpath_expression.find(json_data)
 
+	print(json_data)
+
 	with open(block["filepath"], "w+") as yaml_config_file:
 		yaml.dump(json_data, yaml_config_file)
 		yaml_config_file.close()
