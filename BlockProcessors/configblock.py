@@ -58,7 +58,7 @@ def print_yaml(block):
 	"""Prints value in specified jsonpath for JSON file...
 	"""
 
-	json_data = yaml.loads(open(block["filepath"], "r").read())
+	json_data = yaml.load(open(block["filepath"], "r").read())
 	jsonpath_expression = parse(block["jsonpath"])
 	data = jsonpath_expression.find(json_data)
 
