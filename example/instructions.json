@@ -34,9 +34,9 @@
 		},
 
 		{
-			"type":"config.write.json",
+			"type":"config.write.yaml",
 			"filepath":"./example/config.json",
-			"jsonpath":"$.app.meta.name",
+			"jsonpath":"$.example",
 			"value":"%test-message%"
 		}
 	],

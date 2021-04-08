@@ -3,7 +3,7 @@
 ## Instruction type selector 
 
 Processor selector: **config**
-Usage: **config.<filetype>.<command>**
+Usage: **config<command>.<filetype>**
 
 ## Requirements
 
@@ -14,7 +14,7 @@ specified configuration files.
 
 [print, write]
 
-#### json.print
+#### print.json
 
 Provided a valid JSONPath and JSON file you will be returned the value stored at
 the specified key.
@@ -27,7 +27,7 @@ the specified key.
 }
 ```
 
-#### json.write
+#### write.json
 
 Provided a valid JSONPath and JSON file you will alter the value at the specified key.
 
