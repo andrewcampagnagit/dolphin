@@ -68,13 +68,10 @@ def write_yaml(block):
 	"""Writes value in specified jsonpath for JSON file...
 	"""
 
-	print("write")
 	json_data = yaml.load(open(block["filepath"], "r").read())
 	jsonpath_expression = parse(block["jsonpath"])
 	jsonpath_expression.update(json_data, block["value"])
 	data = jsonpath_expression.find(json_data)
-
-	print(json_data)
 
 	with open(block["filepath"], "w+") as yaml_config_file:
 		yaml.dump(json_data, yaml_config_file)
