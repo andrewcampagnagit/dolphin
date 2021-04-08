@@ -34,7 +34,7 @@
 		},
 
 		{
-			"type":"config.print.yaml",
+			"type":"config.write.yaml",
 			"filepath":"./example/config.yaml",
 			"jsonpath":"$.example",
 			"value":"%test-message%"
