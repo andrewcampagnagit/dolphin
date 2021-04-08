@@ -35,7 +35,7 @@
 
 		{
 			"type":"config.write.yaml",
-			"filepath":"./example/config.json",
+			"filepath":"./example/config.yaml",
 			"jsonpath":"$.example",
 			"value":"%test-message%"
 		}
