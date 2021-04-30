@@ -46,14 +46,14 @@ Gathering resources...
 *******************************************************
 Loading manifest from file /dolphin/example/manifest.json
 [GET]**************************************************
-Downloading instructions from https://raw.githubusercontent.com/andrewcampagnagit/dolphin/beta-3/example/instructions.json
+Downloading instructions from https://raw.githubusercontent.com/andrewcampagnagit/dolphin/beta-4/example/instructions.json
 Placing instructions into ./tmp/instructions.json
 [GET]**************************************************
-Downloading vars from https://raw.githubusercontent.com/andrewcampagnagit/dolphin/beta-3/example/vars.json
+Downloading vars from https://raw.githubusercontent.com/andrewcampagnagit/dolphin/beta-4/example/vars.json
 Placing vars into ./tmp/vars.json
 [INSTRUCTION BLOCK]************************************
 Hello dolphin!
-Version: beta-3
+Version: beta-4
 [TEST BLOCK]*******************************************
 {'script': 'echo "test"', 'expected_result': 'test\n'}
 PASS
@@ -69,8 +69,8 @@ Cleaning up...
 
 You're ready to go! See below for more information.
 
-**Comprehensive guide** https://github.com/andrewcampagnagit/dolphin/blob/beta-3/docs/GUIDE.md
+**Comprehensive guide** https://github.com/andrewcampagnagit/dolphin/blob/beta-4/docs/GUIDE.md
 
-**Project contribution rules** https://github.com/andrewcampagnagit/dolphin/blob/beta-3/docs/CONTRIB_RULES.md
+**Project contribution rules** https://github.com/andrewcampagnagit/dolphin/blob/beta-4/docs/CONTRIB_RULES.md
 
 
