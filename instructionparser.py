@@ -42,7 +42,7 @@ class InstructionParser():
     def parseblock(self, block):
         """Parses instructions from block into useable datastructures...
         """
-
+        
         self._setprocessor(block)
         block = self._insertvars(block)
         self.main_cmd, self.var_cmd, self.wait_for = self.processor(block, self.varpath)

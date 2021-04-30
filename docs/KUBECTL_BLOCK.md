@@ -92,15 +92,17 @@ To execute shell commands:
 
 Wait for a Kubernetes Pod status to read a desired state
 
-To wait for a Pod to enter the "Running" state:
+To wait for a Pod to enter the "Running" state with a 10 second buffer:
 
 ```json
 "wait_for": 
 [
     	{
     		"type": "PodStatus",
-    		"selector": "Ready",
-    		"namespace": "project_name"
+    		"value": "Running",
+    		"selector": "Pod",
+    		"namespace": "project_name",
+    		"buffer": 10
     	}
 ]
 ```

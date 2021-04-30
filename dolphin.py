@@ -17,6 +17,7 @@ from dolphinpkg.packager.packager import Packager
 from colorama import Fore, Style
 import sys, os, json, logging
 import time
+import traceback
 
 print(Fore.YELLOW, end="")
 print(Messages.get_info_msg("STARTUP"))
@@ -120,7 +121,10 @@ def deploy():
 
 	except Exception as e:
 		print(Fore.RED, end="")
-		print(e)
+		exc_type, exc_obj, exc_tb = sys.exc_info()
+		fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+		print(exc_type, fname, exc_tb.tb_lineno)
+		traceback.print_exc()
 	
 	print(Style.RESET_ALL, end="")
 	exit()

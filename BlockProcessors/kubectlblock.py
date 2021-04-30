@@ -3,6 +3,7 @@ kubectl instruction block processor...
 """
 
 import requests
+import json
 
 def processblock(block, varpath):
     """Required method for all processors
@@ -24,14 +25,14 @@ def processblock(block, varpath):
     elif block["type"] == "kubectl.create":
         return processcreate(block, varpath)
 
-def _insertvars(block, varpath):
+def _insertvars(resource_path, varpath):
     """Inserts vars into Kubernetes resource file...
     """
 
     with open(varpath + "vars.json", "r") as var_file:
             var_dict = json.load(var_file)
 
-    resource = open(block["from"]["path"], "r").read()
+    resource = open(resource_path, "r").read()
 
     while "%" in resource:
         index_1 = resource.find("%") + 1
@@ -40,7 +41,7 @@ def _insertvars(block, varpath):
         resource_file = resource.replace(
             "%" + variable + "%", var_dict[variable])
 
-    with open(block["from"]["path"], "w+") as resource_file:
+    with open(resource_path, "w+") as resource_file:
         resource_file.write(resource)
         resource_file.close()
 
@@ -53,8 +54,8 @@ def processcreate(block, varpath):
 
     ##  Creates a resource from a Kubernetes YAML file
     if block["from"]["type"] == "file":
-        main_cmd = "kubectl create -f resources/" + block["from"]["path"]
-        _insertvars(block["from"]["file"], varpath)
+        main_cmd = "kubectl create -f " + block["from"]["path"]
+        _insertvars(block["from"]["path"], varpath)
 
     ##  Creates a resource from a remote Kubernetes YAML file with [GET]
     elif block["from"]["type"] == "GET":
@@ -88,7 +89,7 @@ def processdelete(block):
 
     ##  Deletes a resource from a Kubernetes YAML file
     if block["from"]["type"] == "file":
-        main_cmd = "kubectl delete -f resources/" + block["from"]["path"]
+        main_cmd = "kubectl delete -f " + block["from"]["path"]
 
     ##  Deletes a resource from a remote Kubernetes YAML file with [GET]
     elif block["from"]["type"] == "GET":
