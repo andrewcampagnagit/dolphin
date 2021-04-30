@@ -38,8 +38,10 @@ def _insertvars(resource_path, varpath):
         index_1 = resource.find("%") + 1
         index_2 = resource.find("%", index_1 + 1)
         variable = resource[index_1:index_2]
-        resource_file = resource.replace(
+        resource = resource.replace(
             "%" + variable + "%", var_dict[variable])
+        print(variable)
+        print(var_dict[variable])
 
     with open(resource_path, "w+") as resource_file:
         resource_file.write(resource)
