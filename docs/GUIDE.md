@@ -36,14 +36,16 @@ The output should be as follows (for beta-4)
 Dolphin - Cloud deployment and packaging framework.
 dolphindev.com                 (beta-4)
 *******************************************************
-['/usr/local/bin/dolphin', 'deploy', '--file', 'package_name/instructions.json']
+['/usr/local/bin/dolphin', 'deploy', '-f', 'example_deploy/instructions.json']
 Gathering resources...
+{'instructions_file': 'example_deploy/instructions.json'}
 [INSTRUCTION BLOCK]************************************
 Hello dolphin!
 Version: beta-4
 [TEST BLOCK]*******************************************
 {'script': 'echo "It works!"', 'expected_result': 'It works!\n'}
 PASS
+{'time': 'May 04 2021 @ 01:45:15:532126 PM', 'id': 'ec41c114e57b43f29abf9b5c741da8c5', 'tests': {0: {'script': 'echo "It works!"', 'status': 'Pass'}}, 'status': 'DeploySuccessful'}
 ```
 
 #### Instruction blocks
