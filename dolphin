@@ -14,14 +14,18 @@ from dolphinpkg.instructionparser import InstructionParser
 from dolphinpkg.downloader import Downloader
 from dolphinpkg.infod.messages import Messages
 from dolphinpkg.packager.packager import Packager
+from dolphinpkg.history.history import History
 from colorama import Fore, Style
 import sys, os, json, logging
-import time
+import time, datetime
 import traceback
+import uuid
 
 print(Fore.YELLOW, end="")
 print(Messages.get_info_msg("STARTUP"))
 print(Style.RESET_ALL, end="")
+
+history_data = {"time": datetime.datetime.now().strftime("%B %d %Y @ %I:%M:%S:%f %p")}
 
 def deploy():
 	"""Each block is then is processed in the parseblock(<block>) method 
@@ -36,6 +40,7 @@ def deploy():
 
 	try:
 		args = parseargs()
+		print(args)
 
 		# Working with manifests - should abstract this...manifests could be files
 		if "from_manifest_get" in args.keys():
@@ -97,25 +102,44 @@ def deploy():
 			instruction_blocks["settings"]["varpath"] = "/tmp/"
 			print(Style.RESET_ALL, end="")
 
+		if "name" not in instruction_blocks["settings"].keys():
+			instruction_blocks["settings"]["name"] = str(int(time.time()))
+
+		if "meta" in instruction_blocks["settings"].keys():
+			history_data["meta"] = {}
+			for label in instruction_blocks["settings"]["meta"].keys():
+				history_data["meta"][label] = instruction_blocks["settings"]["meta"][label]
+
+		history_data["id"] = uuid.uuid4().hex
+		history_data["tests"] = {}
+
 		parser = InstructionParser(instruction_blocks["settings"]["varpath"])
 
-		for block in instruction_blocks["blocks"]:
-			print(Fore.WHITE,end="")
-			print("[INSTRUCTION BLOCK]************************************")
-			print(Style.RESET_ALL, end="")
-			parser.parseblock(block)
+		if "run_tests" not in args.keys():
+			for block in instruction_blocks["blocks"]:
+				print(Fore.WHITE,end="")
+				print("[INSTRUCTION BLOCK]************************************")
+				print(Style.RESET_ALL, end="")
+				parser.parseblock(block)
+			history_data["status"] = "DeploySuccessful"
+		else:
+			history_data["status"] = "TestOnly"
 
-		for test in instruction_blocks["tests"]:
+		for test_id, test in enumerate(instruction_blocks["tests"]):
 			print(Fore.WHITE,end="")
 			print("[TEST BLOCK]*******************************************")
+			history_data["tests"][test_id] = {}
+			history_data["tests"][test_id]["script"] = test["script"]
 			print(Style.RESET_ALL, end="")
 			if not parser.run_test(test):
+				history_data["tests"][test_id]["status"] = "Failed"
 				print(Fore.RED, end="")
 				print("Failed test block")
 				print(test["script"])
 				raise Exception(Messages.get_exception_msg("5"))
 			else:
 				print(Fore.GREEN, end="")
+				history_data["tests"][test_id]["status"] = "Pass"
 				print("PASS")
 				print(Style.RESET_ALL, end="")
 
@@ -125,8 +149,11 @@ def deploy():
 		fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
 		print(exc_type, fname, exc_tb.tb_lineno)
 		traceback.print_exc()
+		history_data["status"] = "DeployFailed"
 	
 	print(Style.RESET_ALL, end="")
+	print(history_data)
+	History.export("/usr/local/bin/dolphinpkg/history/history.json", instruction_blocks["settings"]["name"], history_data)
 	exit()
 
 def parseargs():
@@ -146,7 +173,9 @@ def parseargs():
 		"-mG":"from_manifest_get",
 		"--manifest-get":"from_manifest_get",
 		"-mF":"from_manifest_file",
-		"--manifest-file":"from_manifest_file"
+		"--manifest-file":"from_manifest_file",
+		"--test-only":"run_tests",
+		"-t":"run_tests"
 	}
 
 	current_option = None
@@ -154,6 +183,9 @@ def parseargs():
 	for arg in sys.argv[2:]:
 		if arg in options.keys():
 			current_option = options[arg]
+
+			if current_option == "run_tests":
+				parsed[current_option] = ""
 		else:
 
 			# If there are no options selected for the given argument
@@ -185,6 +217,8 @@ if __name__ == "__main__":
 				deploy()
 			elif sys.argv[1] == "package-create":
 				Packager.create_package(sys.argv[2])
+			elif sys.argv[1] == "history":
+				History.show("/usr/local/bin/dolphinpkg/history/history.json")
 			else:
 				raise(Exception(Messages.get_exception_msg("3")))
 		else:
