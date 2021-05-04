@@ -13,8 +13,8 @@ Dolphin aims to ease the multistage cloud application deployment process by crea
 - ConfigBlockProcessor: New out-of-box BlockProcessor for modifying various configuration files
 - Colorama fixes: Multiple terminal colorama bugs have been fixed
 - Logging: Advanced logging features & debugging features **(Still developing)**
-- Health: Re-run test blocks alone or develop test block only instruction files for health checking **(Still developing)**
-- History: See deployment and test result history **(Still developing)**
+- Health: Re-run test blocks alone or develop test block only instruction files for health checking **(Beta released!)**
+- History: See deployment and test result history **(Beta released!)**
 - Repository server: Run dolphin as a stand alone repository server **(Still developing)**
 
 #### Fast start guide
