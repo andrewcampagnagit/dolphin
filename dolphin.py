@@ -218,7 +218,7 @@ if __name__ == "__main__":
 			elif sys.argv[1] == "package-create":
 				Packager.create_package(sys.argv[2])
 			elif sys.argv[1] == "history":
-				History.show("/usr/local/bin/dolphinpkg/history/history.json")
+				History.show("/usr/local/bin/dolphinpkg/history/history.json", sys.argv[2:])
 			else:
 				raise(Exception(Messages.get_exception_msg("3")))
 		else:
