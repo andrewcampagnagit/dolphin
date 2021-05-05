@@ -13,18 +13,21 @@ class History():
 			json.dump(history_json, history_json_file, indent=6)
 
 	@classmethod
-	def show(self, path):
+	def show(self, path, args=None):
 		"""Shows history data...
 		"""
 
 		history_json = json.load(open(path, "r"))
 
 		for epoch_key in history_json:
-			print("ID: "+ history_json[epoch_key]["id"])
-			print("Time deployed: "+ history_json[epoch_key]["time"])
-			print("Result status: "+ history_json[epoch_key]["status"])
+			history_block = ""
+			history_block.append("ID: "+ history_json[epoch_key]["id"] +"\n")
+			history_block.append("Time deployed: "+ history_json[epoch_key]["time"] +"\n")
+			history_block.append("Result status: "+ history_json[epoch_key]["status"] +"\n")
 
 			if "meta" in history_json[epoch_key].keys():
-				print("User defined labels:")
 				for label in history_json[epoch_key]["meta"].keys():
-					print(label +": "+ history_json[epoch_key]["meta"][label])
+					history_block.append(label +": "+ history_json[epoch_key]["meta"][label] +"\n")
+
+			if args == None:
+				print(history_block)
