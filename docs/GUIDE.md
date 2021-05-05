@@ -181,6 +181,22 @@ Set the path to your **vars** file using the settings block. If there is none do
 },
 ```
 
+Add a **meta** object inside of your settings block to ensure all history related to the deployment is
+properly labeled.
+
+If you wanted to note the name and version of the application deployed I would add meta labels like this:
+```json
+"settings": {
+    ...
+    "meta": {
+        "name":"my application",
+        "version":"1.0-beta"
+    }
+}
+```
+
+See the **History** section to learn more.
+
 #### Instruction blocks
 
 Everything is based around three simple programatic states that dolphin uses to deploy packages.
@@ -233,5 +249,7 @@ PASS
 PASS
 ```
 
+## Section 3. History
 
+Every deployment and test that is run with dolphin
 

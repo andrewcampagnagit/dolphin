@@ -14,9 +14,10 @@ class Packager():
 		instruction_template = {
 			"settings": {
 				"varpath": name +"/data/"
-			},
-			"meta": {
-				"name":""
+				"meta": {
+					"name": name,
+					"generatedBy": "dolphin packager"
+				}
 			},
 			"blocks": [
 				{
