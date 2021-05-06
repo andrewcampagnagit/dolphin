@@ -258,19 +258,19 @@ Every deployment and test that is run with dolphin produces a **fingerprint** wh
 Example of a fingerprint:
 ```json
 {
-    'time': 'May 06 2021 @ 10:58:07:698197 AM', 
-    'meta': {
-        'name': 'package_name', 
-	'generatedBy': 'dolphin packager'
+    "time": "May 06 2021 @ 10:58:07:698197 AM", 
+    "meta": {
+        "name": "package_name", 
+	"generatedBy": "dolphin packager"
     }, 
-    'id': '2ded1787ba48410281106fec7993ff43', 
-    'tests': {
+    "id": "2ded1787ba48410281106fec7993ff43", 
+    "tests": {
         0: {
-	    'script': 'echo "It works!"', 
-	    'status': 'Pass'
+	    "script": "echo "It works!"", 
+	    "status": "Pass"
 	   }
     }, 
-    'status': 'DeploySuccessful'
+    "status": "DeploySuccessful"
 }
 ```
 
