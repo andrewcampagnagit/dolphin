@@ -1,6 +1,6 @@
 # Dolphin beta-4 Guide
 
-In this guide, you will learn the how to create and deploy dolphin packages, work with vars, create test blocks, utilize various useful command-line options, and develop custom BlockProcessors.
+In this guide, you will learn the how to create and deploy dolphin packages, work with vars, create test blocks, utilize various useful command-line options, view history, and develop custom BlockProcessors.
 
 ## Section 1. Introduction
 
@@ -34,18 +34,18 @@ The output should be as follows (for beta-4)
 ```
 *******************************************************
 Dolphin - Cloud deployment and packaging framework.
-dolphindev.com                 (beta-4)
+dolphindev.com				   (beta-4)
 *******************************************************
-['/usr/local/bin/dolphin', 'deploy', '-f', 'example_deploy/instructions.json']
+['/usr/local/bin/dolphin', 'deploy', '-f', 'package_name/instructions.json']
 Gathering resources...
-{'instructions_file': 'example_deploy/instructions.json'}
+{'instructions_file': 'package_name/instructions.json'}
 [INSTRUCTION BLOCK]************************************
 Hello dolphin!
 Version: beta-4
 [TEST BLOCK]*******************************************
 {'script': 'echo "It works!"', 'expected_result': 'It works!\n'}
 PASS
-{'time': 'May 04 2021 @ 01:45:15:532126 PM', 'id': 'ec41c114e57b43f29abf9b5c741da8c5', 'tests': {0: {'script': 'echo "It works!"', 'status': 'Pass'}}, 'status': 'DeploySuccessful'}
+{'time': 'May 06 2021 @ 10:58:07:698197 AM', 'meta': {'name': 'package_name', 'generatedBy': 'dolphin packager'}, 'id': '2ded1787ba48410281106fec7993ff43', 'tests': {0: {'script': 'echo "It works!"', 'status': 'Pass'}}, 'status': 'DeploySuccessful'}
 ```
 
 #### Instruction blocks
@@ -184,7 +184,7 @@ Set the path to your **vars** file using the settings block. If there is none do
 Add a **meta** object inside of your settings block to ensure all history related to the deployment is
 properly labeled.
 
-If you wanted to note the name and version of the application deployed I would add meta labels like this:
+If we wanted to note the name and version of the application deployed we would add meta labels like this:
 ```json
 "settings": {
     ...
@@ -251,5 +251,50 @@ PASS
 
 ## Section 3. History
 
-Every deployment and test that is run with dolphin
+#### History fingerprints
 
+Every deployment and test that is run with dolphin produces a **fingerprint** which contains both generated and user defined data.
+
+Example of a fingerprint:
+```json
+{
+    "time": "May 06 2021 @ 10:58:07:698197 AM", 
+    "meta": {
+        "name": "package_name", 
+	"generatedBy": "dolphin packager"
+    }, 
+    "id": "2ded1787ba48410281106fec7993ff43", 
+    "tests": {
+        0: {
+	    "script": "echo "It works!"", 
+	    "status": "Pass"
+	   }
+    }, 
+    "status": "DeploySuccessful"
+}
+```
+
+The generated fields **time**, **id**, **status**, and all **test** fields are managed by dolphin. Anything in the **meta** section is user defined and is a direct copy of what was input in the meta object within the settings block of the deployed instructions.
+
+#### Showing & searching history
+
+You utilize the **history** application with dolphin to print history to the terminal and easily search history using labels.
+
+To show all history:
+```bash
+dolphin history
+```
+
+To search for a specific label use the **-l** option to search for fingerprints with specified labels.
+
+**Note:** Encapsulate your each label with single or double quotes after the -l option
+
+To search for a single label:
+```bash
+dolphin history -l 'version:1.0'
+```
+
+To search for multiple labels:
+```bash
+dolphin history -l 'version:1.0' 'name:myApp' 'cluster:myKubernetesCluster'
+```
