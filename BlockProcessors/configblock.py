@@ -1,7 +1,3 @@
-"""
-config file instruction block processor...
-"""
-
 import json
 import yaml
 import toml
@@ -102,13 +98,13 @@ def write_toml(block):
 	"""Writes value in specified jsonpath for TOML file...
 	"""
 
-	json_data = toml.load(open(block["filepath"], "r").read())
+	json_data = toml.load(open(block["filepath"], "r"))
 	jsonpath_expression = parse(block["tomlpath"])
 	jsonpath_expression.update(json_data, block["value"])
 	data = jsonpath_expression.find(json_data)
 
 	with open(block["filepath"], "w") as toml_config_file:
-		toml.dump(json_data, yaml_config_file)
+		toml.dump(json_data, toml_config_file)
 		toml_config_file.close()
 
 	return "echo \"" + str(json_data) +"\"", None, None
