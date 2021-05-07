@@ -92,7 +92,7 @@ def print_toml(block):
 	"""Prints value in specified jsonpath for TOML file...
 	"""
 
-	json_data = toml.load(open(block["filepath"], "r").read())
+	json_data = toml.load(open(block["filepath"], "r"))
 	jsonpath_expression = parse(block["jsonpath"])
 	data = jsonpath_expression.find(json_data)
 
