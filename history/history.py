@@ -27,7 +27,7 @@ class History():
 
 			if "meta" in history_json[epoch_key].keys():
 				for label in history_json[epoch_key]["meta"].keys():
-					history_block.append(label +": "+ history_json[epoch_key]["meta"][label])
+					history_block.append(label +":"+ history_json[epoch_key]["meta"][label])
 			
 			if args == None:
 				print(history_block)

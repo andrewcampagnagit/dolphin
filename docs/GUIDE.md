@@ -285,16 +285,16 @@ To show all history:
 dolphin history
 ```
 
-To search for a specific label use the **-l** option to search for fingerprints with specified labels.
+To search for a specific label type each label followed by a blank space after the **history** application option
 
-**Note:** Encapsulate your each label with single or double quotes after the -l option
+**Note:** Encapsulate each label with single or double quotes for accurate results
 
 To search for a single label:
 ```bash
-dolphin history -l 'version:1.0'
+dolphin history 'version:1.0'
 ```
 
 To search for multiple labels:
 ```bash
-dolphin history -l 'version:1.0' 'name:myApp' 'cluster:myKubernetesCluster'
+dolphin history 'version:1.0' 'name:myApp' 'cluster:myKubernetesCluster'
 ```
