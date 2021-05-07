@@ -93,7 +93,7 @@ def print_toml(block):
 	"""
 
 	json_data = toml.load(open(block["filepath"], "r"))
-	jsonpath_expression = parse(block["jsonpath"])
+	jsonpath_expression = parse(block["tomlpath"])
 	data = jsonpath_expression.find(json_data)
 
 	return "echo \"" + data[0].value +"\"", None, None
@@ -103,7 +103,7 @@ def write_toml(block):
 	"""
 
 	json_data = toml.load(open(block["filepath"], "r").read())
-	jsonpath_expression = parse(block["jsonpath"])
+	jsonpath_expression = parse(block["tomlpath"])
 	jsonpath_expression.update(json_data, block["value"])
 	data = jsonpath_expression.find(json_data)
 
