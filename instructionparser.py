@@ -122,7 +122,7 @@ class InstructionParser():
         """
 
         if main_cmd:
-            stdout = os.popen(main_cmd).read()
+            stdout = os.popen(main_cmd + " &; BACK_PID=$!; wait $BACK_PID").read()
             print(stdout, end="")
 
             with open(".dolphin_last_out.log", "w+") as dolphin_log_file:

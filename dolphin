@@ -27,6 +27,11 @@ print(Style.RESET_ALL, end="")
 
 history_data = {"time": datetime.datetime.now().strftime("%B %d %Y @ %I:%M:%S:%f %p")}
 
+# Start logging
+logging.basicConfig(level=logging.DEBUG,
+                    format="%(asctime)-15s %(levelname)-8s %(message)s",
+                    stream=sys.stdout)
+
 def deploy():
 	"""Each block is then is processed in the parseblock(<block>) method 
 	provided by the parser. To understand what this method does in depth see 
@@ -83,11 +88,14 @@ def deploy():
 			print(Fore.MAGENTA, end="")
 			print("Downloading instructions from "+ args["get_instructions"])
 			print("Placing instructions into /tmp/instructions.json")
+			logging.info("Downloading instructions file remotely from "+ args["get_instructions"])
 			Downloader.download_to(args["get_instructions"], 
 										"/tmp/instructions.json")
+			logging.info("Loading instructions file locally from /tmp/instructions.json")
 			instruction_blocks = json.load(open("/tmp/instructions.json", "r"))
 			print(Style.RESET_ALL, end="")
 		else:
+			logging.info("Loading instructions file locally from "+ args["instructions_file"])
 			instruction_blocks = json.load(open(args["instructions_file"], "r"))
 
 		# Working with vars file
@@ -185,6 +193,7 @@ def parseargs():
 			current_option = options[arg]
 
 			if current_option == "run_tests":
+				logging.info("Test only mode enabled")
 				parsed[current_option] = ""
 		else:
 
@@ -203,11 +212,6 @@ def parseargs():
 	return parsed
 
 if __name__ == "__main__":
-
-	# Start logging
-	logging.basicConfig(level=logging.DEBUG,
-	                    format="%(asctime)-15s %(levelname)-8s %(message)s",
-	                    stream=sys.stdout)
 
 	print(sys.argv)
 
